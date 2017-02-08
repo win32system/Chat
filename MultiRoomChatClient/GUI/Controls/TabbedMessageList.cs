@@ -25,6 +25,7 @@ namespace MultiRoomChatClient
 
         public void AddRoom(RoomObjExt room)
         {
+            //this.tabControl1 = new TabControl();
             TabPage tp = new TabPage(room.Name);
             tp.Tag = room;
             ListBox lb = new ListBox();
@@ -39,7 +40,7 @@ namespace MultiRoomChatClient
             {
                 tp.Text = x > 0 ? room.Name : room.Name + " (" + x + ")";
             };
-        //    tp.Controls.Add(tp);
+            tp.Controls.Add(lb);
             this.tabControl1.TabPages.Add(tp);
         }
 
@@ -53,7 +54,7 @@ namespace MultiRoomChatClient
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
-
+            
         }
     }
 }

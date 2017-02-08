@@ -29,8 +29,8 @@ namespace MultiRoomChatClient
             if(msg.Length > 0)
             {
                 RequestManager.SendMessage(msg);
-             //   Manager.AddMessage(new ChatMessage(Client.ClientObject, msg, DateTime.Now) );
-              //  kostylRefreshList();
+                //tree_Room.AddMessage(new ChatMessage(Client.))
+                //Manager.AddMessage(new ChatMessage(Client.Username, msg, DateTime.Now) ); //xz что должно отправляться 
             }
 
             tb_message.Clear();
@@ -86,7 +86,7 @@ namespace MultiRoomChatClient
             tb_message.Enabled = false;
             btn_createRoom.Enabled = false;
         }
-        TabbedMessageList tab = new TabbedMessageList();
+       // TabbedMessageList tab = new TabbedMessageList();
         private void tree_Room_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             // MessageBox.Show(tree_Room.SelectedNode.Text);
@@ -105,8 +105,11 @@ namespace MultiRoomChatClient
             var tag = tree_Room.SelectedNode.Tag;
             if (tag is RoomObjExt)
             {
-               
-                tab.AddRoom(tag as RoomObjExt);
+                //if (tabbedMessageList1.Equals(tag)) проверка существующей комнаты
+                
+                    tabbedMessageList1.AddRoom(tag as RoomObjExt);
+                
+                //tab.AddRoom(tag as RoomObjExt);
                 //Manager. AddRoom(tag as RoomObjExt);//  CreateRoom(  MoveTo( tag as RoomObjExt);
             }
             else if (tag is string)

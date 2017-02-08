@@ -17,9 +17,9 @@ namespace MultiRoomChatClient
         {
             InitializeComponent();
             ResponseHandler.loginSuccessfull += (x) => Invoke(new Action<string>(On_LoginSuccessfull), x);
-            ResponseHandler.loggedAsAdmin += (x) => Invoke(new Action<string>(On_LoginAdmin), x);
-            ResponseHandler.loggedBanned += (x) => Invoke(new Action<string>(On_LoginBanned), x);
-            ResponseHandler.loginFail        += (x)  => Invoke(new Action(On_LoginFailed));
+            ResponseHandler.loggedAsAdmin    += (x) => Invoke(new Action<string>(On_LoginAdmin), x);
+            ResponseHandler.loggedBanned     += (x) => Invoke(new Action<string>(On_LoginBanned), x);
+            ResponseHandler.loginFail        += (x) => Invoke(new Action(On_LoginFailed));
         }
 
         private void btn_connect_Click(object sender, EventArgs e)
