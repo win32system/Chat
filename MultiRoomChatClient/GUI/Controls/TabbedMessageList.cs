@@ -60,6 +60,11 @@ namespace MultiRoomChatClient
             room.Unbind();
         }
 
+        public void SendMessage(string msg)
+        {
+
+        }
+
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             

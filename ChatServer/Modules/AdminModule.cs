@@ -47,7 +47,7 @@ namespace ChatServer
             ClientObject user = Manager.FindClient(username);
             BlackListProvider.RemoveRecord(username);
             user.SendMessage(ResponseConstructor.GetUnBannedNotification());
-            user.Role = new User();
+            user.Role = new User(user);
         }
     }
 }

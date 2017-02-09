@@ -52,7 +52,7 @@ namespace ChatServer
             LinkedList<ChatMessage> msgs = new LinkedList<ChatMessage>();
 
             LinkedListNode<ChatMessage> current = Messages.Last;
-            while (current != null || current.Value.TimeStamp != time)
+            while (current != null && current.Value.TimeStamp != time)
             {
                 msgs.AddFirst(current.Value);
                 current = current.Previous;

@@ -75,7 +75,7 @@ namespace MultiRoomChatClient
                             notificationReceived?.Invoke((string)req.args);
                             break;
                         case "entered":
-                            args = JsonConvert.DeserializeObject<string[]>((string)req.args);
+                            args = JsonConvert.DeserializeObject<string[]>(req.args.ToString());
                             UserEntered?.Invoke((string)args[0], (string)args[1]);
                             break;
                         case "left":
