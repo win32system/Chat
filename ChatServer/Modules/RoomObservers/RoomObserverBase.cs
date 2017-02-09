@@ -50,7 +50,7 @@ namespace ChatServer
                     r.Broadcast(client, msg);
                     break;
                 case "active":
-                    args = JsonConvert.DeserializeObject<object[]>((string)request.args);
+                    args = JsonConvert.DeserializeObject<object[]>(request.args.ToString());
                     room = Manager.FindRoom((string)args[0]);
                     DateTime since = default(DateTime);
                     if (args[1] != null)
