@@ -14,11 +14,9 @@ namespace ChatServer
         static void Main(string[] args)
 
        {
-            /*try
+            try
             {
                 server = new ServerObject();
-                ///////RoomManager.Host = new RoomObject("Host");
-                ///////RoomManager.BindEvents();
                 listenThread = new Thread(new ThreadStart(server.Listen));
                 listenThread.Start(); //старт потока
             }
@@ -27,7 +25,7 @@ namespace ChatServer
                 server.Disconnect();
                 Console.WriteLine(ex.Message);
             }
-            Console.ReadLine();*/
+            Console.ReadLine();
             /////HOOOOOOY!
         }
     }
