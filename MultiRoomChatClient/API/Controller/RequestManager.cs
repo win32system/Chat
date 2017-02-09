@@ -75,26 +75,36 @@ namespace MultiRoomChatClient
             Client.AddRequest(JsonConvert.SerializeObject(msg));
         }*/
 
-        public static void SendPrivateMessage(string username, ChatMessage msg)
+        public static void SendPrivateMessage(string userName, ChatMessage msg)
         {
-            RequestObject message = new RequestObject("private", username, msg);
+            RequestObject message = new RequestObject("private", userName, msg);
             Client.AddRequest(JsonConvert.SerializeObject(message));
         }
 
-        public static void AdminBan(string username, DateTime exp)
+        public static void AdminBan(string userName, DateTime exp)
         {
-            RequestObject message = new RequestObject("admin", "ban", new object[] { username, exp });
+            if (userName == null || userName == "")
+                return;
+
+            RequestObject message = new RequestObject("admin", "ban", new object[] { userName, exp });
+
             Client.AddRequest(JsonConvert.SerializeObject(message));
         }
 
-        public static void AdminBanEternal(string username)
+        public static void AdminBanEternal(string userName)
         {
-            RequestObject message = new RequestObject("admin", "ban", username);
+            if (userName == null || userName == "")
+                return;
+
+            RequestObject message = new RequestObject("admin", "ban", new object[] { userName, DateTime.MaxValue });
             Client.AddRequest(JsonConvert.SerializeObject(message));
         }
-        public static void AdminUnban(string username)
+        public static void AdminUnban(string userName)
         {
-            RequestObject message = new RequestObject("admin", "unban", username);
+            if (userName == null || userName == "")
+                return;
+
+            RequestObject message = new RequestObject("admin", "unban", userName);
             Client.AddRequest(JsonConvert.SerializeObject(message));
         }
     }

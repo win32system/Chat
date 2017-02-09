@@ -17,7 +17,7 @@ namespace MultiRoomChatClient
 
         public RoomManager()
         {
-            HistoryDataprovider HistoryProvider = new HistoryDataprovider("Msg");  //correction global HistoryDataprovider
+            HistoryDataprovider HistoryProvider = new HistoryDataprovider("Msg");  
 
             ResponseHandler.roomDataReceived += onRoomDataReceived;
             ResponseHandler.UserEntered += AddUser;

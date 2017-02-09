@@ -46,10 +46,11 @@ namespace ChatServer
             switch (request.Cmd)
             {
                 case "msg":
-                    object[] args; //(object[])JsonConvert.DeserializeObject(request.args.ToString());
-                    ChatMessage msg = args[1] as ChatMessage; //JsonConvert.DeserializeObject<ChatMessage>((string)request.args[0]);
+                    object[] args = JsonConvert.DeserializeObject<object[]>(request.args.ToString());
+                    string rstr = args[0] as string;
+                    ChatMessage msg = args[1] as ChatMessage; 
                     RoomObject r = Manager.FindRoom((string)args[0]);
-                    r.Broadcast(client, msg);
+                     r.Broadcast(client, msg);
                     break;
                 case "active":
                     args = JsonConvert.DeserializeObject<object[]>(request.args.ToString());
