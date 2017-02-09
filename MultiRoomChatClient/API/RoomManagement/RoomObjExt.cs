@@ -35,7 +35,7 @@ namespace MultiRoomChatClient
         {
             ChatMessage msg = new ChatMessage("Me", message, DateTime.Now);
             Messages.Add(msg);
-            RequestManager.SendMessage(message);
+            RequestManager.SendMessage(message, this.Name);
             Client.RoomHistory.AppendMessage(Name, msg);
         }
 

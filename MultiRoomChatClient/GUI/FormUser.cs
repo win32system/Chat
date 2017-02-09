@@ -28,8 +28,8 @@ namespace MultiRoomChatClient
             string msg = tb_message.Text;
             if(msg.Length > 0)
             {
-                RequestManager.SendMessage(msg);
-                
+                //RequestManager.SendMessage(msg);
+                tabbedMessageList1.SendMessage(msg);
                 //tree_Room.AddMessage(new ChatMessage(Client.))
                 //Manager.AddMessage(new ChatMessage(Client.Username, msg, DateTime.Now) ); //xz что должно отправляться 
             }
