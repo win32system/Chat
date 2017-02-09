@@ -34,24 +34,35 @@ namespace MultiRoomChatClient
         public void SendMessage(string message)
         {
             ChatMessage msg = new ChatMessage("Me", message, DateTime.Now);
-            Messages.Add(msg);
+            /*Messages.Add(msg);
+            
+            Client.RoomHistory.AppendMessage(Name, msg);*/
             RequestManager.SendMessage(message, this.Name);
-            Client.RoomHistory.AppendMessage(Name, msg);
-        }
-
-        public void OnMessageReceived(ChatMessage msg)
-        {
             Messages.Add(msg);
             Client.RoomHistory.AppendMessage(Name, msg);
             if (active)
             {
                 MessageReceived?.Invoke(msg);
             }
-            else
+        }
+
+        public void OnMessageReceived(string room, ChatMessage msg)
+        {
+            if(room != Name)
             {
-                Notifications++;
-                NotificationUpdated?.Invoke(Notifications);
+                return;
             }
+            Messages.Add(msg);
+            Client.RoomHistory.AppendMessage(Name, msg);
+            //if (active)
+            //{
+                MessageReceived?.Invoke(msg);
+            //}
+            //else
+            //{
+           //     Notifications++;
+           //     NotificationUpdated?.Invoke(Notifications);
+           // }
         }
 
         public void SetActive()
@@ -86,7 +97,7 @@ namespace MultiRoomChatClient
             {
                 return;
             }
-            OnMessageReceived(msg);
+            OnMessageReceived(room, msg);
         }
 
         public void Suspend()

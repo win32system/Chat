@@ -62,12 +62,6 @@
     <Compile Include="GUI\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Controls\MessageListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GUI\Controls\MessageListBox.Designer.cs">
-      <DependentUpon>MessageListBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\FormUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,9 +90,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Controls\MessageListBox.resx">
-      <DependentUpon>MessageListBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormUser.aa-DJ.resx">
       <DependentUpon>FormUser.cs</DependentUpon>

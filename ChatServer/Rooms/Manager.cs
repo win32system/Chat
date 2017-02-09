@@ -14,6 +14,12 @@ namespace ChatServer
         public static LinkedList<RoomObject> Rooms = new LinkedList<RoomObject>();
         public static LinkedList<ClientObject> Clients = new LinkedList<ClientObject>();
 
+        static Manager()
+        {
+            CreateRoom("Host");
+            Host = Rooms.First.Value;
+        }
+
         public static ClientObject FindClient(string Name)
         {
             foreach (ClientObject client in Clients)
@@ -70,7 +76,7 @@ namespace ChatServer
 
         public static void BroadcastAll(string message)
         {
-            foreach(ClientObject client in Clients)
+            foreach (ClientObject client in Clients)
             {
                 client.SendMessage(message);
             }

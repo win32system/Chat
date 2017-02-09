@@ -103,6 +103,10 @@ namespace MultiRoomChatClient
             //    PrivateMessageForm pmForm = new PrivateMessageForm("lil"); //tag as string);
             //    pmForm.Show();
             //}
+            if(tree_Room.SelectedNode == null)
+            {
+                return;
+            }
             var tag = tree_Room.SelectedNode.Tag;
             if (tag is RoomObjExt)
             {
