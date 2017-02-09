@@ -52,7 +52,8 @@ namespace ChatServer
                 Rooms.AddLast(room);
                 OnRoomCreated(roomName);
                 room.NewMessage += HistoryDataprovider.AppendMessage;
-
+                room.ClientAdded += OnClientAdded;
+                room.ClientRemoved += OnClientLeft;
             }
         }
 

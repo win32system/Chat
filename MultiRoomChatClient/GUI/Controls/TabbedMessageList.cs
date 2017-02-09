@@ -48,6 +48,7 @@ namespace MultiRoomChatClient
                 tp.Text = x > 0 ? room.Name : room.Name + " (" + x + ")";
             };
             tp.Controls.Add(lb);
+            room.SetActive();
             this.tabControl1.TabPages.Add(tp);
 
         }
@@ -58,6 +59,11 @@ namespace MultiRoomChatClient
             this.tabControl1.TabPages.Remove(tab);
             RoomObjExt room = tab.Tag as RoomObjExt;
             room.Unbind();
+        }
+
+        public void SendMessage(string msg)
+        {
+
         }
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)

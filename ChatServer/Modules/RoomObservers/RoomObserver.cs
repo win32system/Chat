@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChatServer
 {
-    public class Message : RoomObserverBase
+    public class RoomObserver : RoomObserverBase
     {
     }
 }

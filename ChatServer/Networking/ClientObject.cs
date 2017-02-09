@@ -25,7 +25,7 @@ namespace ChatServer
         {
             this.Client = tcpClient;
             Stream = tcpClient.GetStream();
-            this.Role = new UnknownUser();
+            this.Role = new UnknownUser(this);
             this.MessageRecieved += Role.Handle;
         }
 

@@ -56,7 +56,13 @@ namespace MultiRoomChatClient
 
         public void SetActive()
         {
-            RequestManager.SetActiveRoom(Name);
+            object d = null;
+            if(Messages.Count > 0)
+            {
+                d = Messages.Last().TimeStamp;
+            }
+            object[] args = new object[] { Name, d };
+            RequestManager.SetActiveRoom(Name, args);
             active = true;
             Notifications = 0;
         }
