@@ -14,7 +14,7 @@ namespace ChatServer.Roles
         public virtual void Handle(ClientObject client, string request)
         {
             RequestObject req = JsonConvert.DeserializeObject<RequestObject>(request);
-            foreach(IHandlerModule module in client.Role.Handlers)
+            foreach(IHandlerModule module in Handlers)
             {
                 if(module.Handle(client, req))
                 {
