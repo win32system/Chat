@@ -50,6 +50,7 @@ namespace MultiRoomChatClient
             tp.Controls.Add(lb);
             room.SetActive();
             this.tabControl1.TabPages.Add(tp);
+
         }
 
         public void CloseRoom()

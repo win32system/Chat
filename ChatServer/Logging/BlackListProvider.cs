@@ -19,7 +19,7 @@ namespace ChatServer
             Directory.CreateDirectory(Folder);
         }
 
-        public static void AppendRecord(string Username, TimeSpan duration)
+        public static void AppendRecord(string Username, DateTime duration)
         {
             File.AppendAllLines(Folder + BlackList, new string[] 
             {
@@ -53,19 +53,18 @@ namespace ChatServer
             }
         }
 
-        public static TimeSpan GetDateTillBanDiscard(string username)
+        public static DateTime GetDateTillBanDiscard(string username)
         {
             LinkedList<BlackListRecord> records = GetBanList();
             foreach(BlackListRecord rec in records)
             {
                 if(username == rec.Username)
-                {//////////////////////////////////////////////////////
-                    DateTime final = rec.From.Add(rec.Duration);
-                    TimeSpan timeLeft = DateTime.Now.Subtract(final);
-                    return timeLeft;
-                }/////////////////////////////////////////////////
+                {
+                    DateTime final = rec.To;
+                    return rec.To;
+                }
             }
-            return default(TimeSpan);
+            return default(DateTime);
         }
 
         private static void SetBlackList(LinkedList<BlackListRecord> records)
@@ -88,7 +87,7 @@ namespace ChatServer
         {
             if (!File.Exists(Folder + BlackList))
             {
-                return new LinkedList<BlackListRecord>();  ///Правка //////////////////////////////////////////////
+                return new LinkedList<BlackListRecord>();
             }
 
             string[] list = File.ReadAllLines(Folder + BlackList);
@@ -104,16 +103,16 @@ namespace ChatServer
 
         private class BlackListRecord
         {
-            public BlackListRecord(DateTime from, string username, TimeSpan duration)
+            public BlackListRecord(DateTime from, string username, DateTime to)
             {
                 this.From = from;
                 this.Username = username;
-                this.Duration = duration;
+                this.To = to;
             }
             public DateTime From { get; set; }
             public string Username { get; set; }
 
-            public TimeSpan Duration { get; set; } 
+            public DateTime To { get; set; } 
         }
     }
 }

@@ -23,8 +23,11 @@ namespace ChatServer
                 case "ban":
                     object[] args = JsonConvert.DeserializeObject<object[]>(request.args.ToString());
                     string username = (string)args[0];
-                    TimeSpan ts = JsonConvert.DeserializeObject<TimeSpan>((string)args[1]);
-                    BanUser(username, ts);
+                    DateTime ts1 = (DateTime)args[1];
+                    //meSpan ts = (TimeSpan)args[1];
+                    //TimeSpan ts = JsonConvert.DeserializeObject<TimeSpan>(args[1].ToString());
+                    //TimeSpan ts = new TimeSpan();
+                    BanUser(username, ts1);
                     break;
                 case "unban":
                     UnBanUser((string)request.args);
@@ -34,10 +37,12 @@ namespace ChatServer
             return true;
         }
 
-        private void BanUser(string username, TimeSpan duration)
+        private void BanUser(string username, DateTime duration)
         {
             ClientObject user = Manager.FindClient(username);
             BlackListProvider.AppendRecord(username, duration);
+            if (user == null || user.ToString() == "")
+                return;
             user.SendMessage(ResponseConstructor.GetBannedNotification(duration));
             user.Role = new BannedUser(user);
         }
@@ -46,8 +51,9 @@ namespace ChatServer
         {
             ClientObject user = Manager.FindClient(username);
             BlackListProvider.RemoveRecord(username);
-            user.SendMessage(ResponseConstructor.GetUnBannedNotification());
-            user.Role = new User(user);
+            string tmp = ResponseConstructor.GetUnBannedNotification(username);
+            user.SendMessage(tmp);
+            user.Role = new User();
         }
     }
 }
