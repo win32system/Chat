@@ -62,7 +62,8 @@ namespace MultiRoomChatClient
 
         public void SendMessage(string msg)
         {
-
+            RoomObjExt current = (RoomObjExt)tabControl1.SelectedTab.Tag;
+            current.SendMessage(msg);
         }
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
