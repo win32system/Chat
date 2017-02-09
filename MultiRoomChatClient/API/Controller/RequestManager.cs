@@ -32,7 +32,6 @@ namespace MultiRoomChatClient
         {
             RequestObject reqObj = new RequestObject("msg", "msg", new object[] { room, new ChatMessage(Client.Username, msg, DateTime.Now) });
             Client.AddRequest(JsonConvert.SerializeObject(reqObj));
-
         }
 
         public static void SetActiveRoom(string room, object args)

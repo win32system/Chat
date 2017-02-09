@@ -58,7 +58,7 @@ namespace MultiRoomChatClient
         }
         public static void AddRequest(string message)
         {
-            messageQue.AddLast(message);
+            messageQue.AddLast(message + Environment.NewLine);
         }
 
         static void WriteStream()

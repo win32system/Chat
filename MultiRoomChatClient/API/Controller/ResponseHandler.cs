@@ -19,6 +19,7 @@ namespace MultiRoomChatClient
         {
             Console.WriteLine(Json); //////////////////////// ///////////////////////////////////////////
             RequestObject req = JsonConvert.DeserializeObject<RequestObject>(Json);
+
             switch (req.Module)
             {
                 case "admin":
