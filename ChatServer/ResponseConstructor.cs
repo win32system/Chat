@@ -29,14 +29,14 @@ namespace ChatServer
             return JsonConvert.SerializeObject(new RequestObject("msg", "left", args));
         }
 
-        public static string GetBannedNotification(TimeSpan time)
+        public static string GetBannedNotification(DateTime time)
         {
             return JsonConvert.SerializeObject(new RequestObject("admin", "ban", time.ToString()));
         }
 
-        public static string GetUnBannedNotification()
+        public static string GetUnBannedNotification(string username)
         {
-            return JsonConvert.SerializeObject(new RequestObject("admin", "unban", null));
+            return JsonConvert.SerializeObject(new RequestObject("admin", "unban", username));
         }
 
         public static string GetLoginResultNotification(string role, string username)  ////////////correction, string username

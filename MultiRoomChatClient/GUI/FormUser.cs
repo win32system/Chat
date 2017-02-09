@@ -29,9 +29,6 @@ namespace MultiRoomChatClient
             if(msg.Length > 0)
             {
                 RequestManager.SendMessage(msg);
-                
-                //tree_Room.AddMessage(new ChatMessage(Client.))
-                //Manager.AddMessage(new ChatMessage(Client.Username, msg, DateTime.Now) ); //xz что должно отправляться 
             }
 
             tb_message.Clear();

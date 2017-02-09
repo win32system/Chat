@@ -92,9 +92,9 @@ namespace MultiRoomChatClient
             RequestObject message = new RequestObject("admin", "ban", username);
             Client.AddRequest(JsonConvert.SerializeObject(message));
         }
-        public static void AdminUnban(string username, ChatMessage msg)
+        public static void AdminUnban(string username)
         {
-            RequestObject message = new RequestObject("admin", "ban", msg);
+            RequestObject message = new RequestObject("admin", "unban", username);
             Client.AddRequest(JsonConvert.SerializeObject(message));
         }
     }
