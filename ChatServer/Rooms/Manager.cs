@@ -1,4 +1,5 @@
 ﻿using Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,6 @@ namespace ChatServer
             return null;
         }
 
-        //public delegate void RoomDelegate(string roomName);
-        //public static event RoomDelegate RoomCreated;
-        //public static event RoomDelegate RoomDeleted;
         
         public static RoomObject FindRoom(string name)
         {
@@ -52,8 +50,8 @@ namespace ChatServer
             {
                 RoomObject room = new RoomObject(roomName);
                 Rooms.AddLast(room);
-                room.NewMessage += HistoryDataprovider.AppendMessage;
                 OnRoomCreated(roomName);
+                room.NewMessage += HistoryDataprovider.AppendMessage;
             }
         }
 
@@ -88,12 +86,12 @@ namespace ChatServer
 
         public static void OnRoomCreated(string room)
         {
-            BroadcastAll(ResponseConstructor.GetRoomCreatedNotification(room));
+            BroadcastAll(ResponseConstructor.GetRoomCreatedNot(room));
         }
 
         public static void OnRoomDeleted(string room)
         {
-            BroadcastAll(ResponseConstructor.GetRoomDeletedNotification(room));
+            BroadcastAll(ResponseConstructor.GetUserLeftNotification(room));
         }
 
         public static RoomObj[] GetAllInfo()

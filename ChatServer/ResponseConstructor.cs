@@ -44,14 +44,14 @@ namespace ChatServer
             return JsonConvert.SerializeObject(new RequestObject("login", role, username));
         }
 
-        internal static string GetRoomCreatedNotification(string room)
+        internal static string GetRoomCreatedNot(string room)
         {
-            return JsonConvert.SerializeObject(new RequestObject("room", "created", room));
+            throw new NotImplementedException();
         }
 
-        internal static string GetRoomDeletedNotification(string room)
+        internal static string GetUserLeftNotification(string room)
         {
-            return JsonConvert.SerializeObject(new RequestObject("room", "closed", room));
+            throw new NotImplementedException();
         }
     }
 }

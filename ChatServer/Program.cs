@@ -12,11 +12,12 @@ namespace ChatServer
         static ServerObject server; // сервер
         static Thread listenThread; // потока для прослушивания
         static void Main(string[] args)
-
        {
             try
             {
                 server = new ServerObject();
+                ///////RoomManager.Host = new RoomObject("Host");
+                ///////RoomManager.BindEvents();
                 listenThread = new Thread(new ThreadStart(server.Listen));
                 listenThread.Start(); //старт потока
             }
@@ -26,7 +27,6 @@ namespace ChatServer
                 Console.WriteLine(ex.Message);
             }
             Console.ReadLine();
-            /////HOOOOOOY!
         }
     }
 }
