@@ -25,7 +25,7 @@ namespace ChatServer.Roles
 
         public async Task TrackBlackList(string username)
         {
-            TimeSpan timeLeft = BlackListProvider.GetDateTillBanDiscard(username);
+            DateTime timeLeft = BlackListProvider.GetDateTillBanDiscard(username);
 
             await Task.Delay(timeLeft);
             client.Role = new User(client);
