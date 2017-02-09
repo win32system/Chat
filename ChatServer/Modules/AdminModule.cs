@@ -53,7 +53,7 @@ namespace ChatServer
             BlackListProvider.RemoveRecord(username);
             string tmp = ResponseConstructor.GetUnBannedNotification(username);
             user.SendMessage(tmp);
-            user.Role = new User();
+            user.Role = new User(user);
         }
     }
 }
