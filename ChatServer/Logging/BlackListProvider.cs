@@ -48,9 +48,9 @@ namespace ChatServer
                 if(r.Username == Username)
                 {
                     records.Remove(r);
-                    break;
                 }
             }
+            SetBlackList(records);
         }
 
         public static DateTime GetDateTillBanDiscard(string username)
@@ -75,7 +75,7 @@ namespace ChatServer
             LinkedListNode<BlackListRecord> curr = records.First;
             for(int i=0; i< lines.Length; i++)
             {
-                lines[i] = JsonConvert.SerializeObject(curr);
+                lines[i] = JsonConvert.SerializeObject(curr.Value);
                 curr = curr.Next;
             }
 
@@ -91,6 +91,8 @@ namespace ChatServer
             }
 
             string[] list = File.ReadAllLines(Folder + BlackList);
+
+
             LinkedList<BlackListRecord> records = new LinkedList<BlackListRecord>();
             int length = list.Length;
             for (int i = 0; i < length; i++)
