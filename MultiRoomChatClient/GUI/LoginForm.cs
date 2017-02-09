@@ -24,38 +24,40 @@ namespace MultiRoomChatClient
 
         private void btn_connect_Click(object sender, EventArgs e)
         {
-            string name = login_box.Text;
+            if (login_box.Text == null || login_box.Text == "")
+                return;
+
             Client.StartClient();
-            RequestManager.Login(name);
+            RequestManager.Login(login_box.Text);
         }
         private void On_LoginFailed()
         {
             login_box.BackColor = Color.Coral;
         }
-
-        private void On_LoginSuccessfull(string Username)
+        
+        private SuperDuperChat On_Log(string UserName)
         {
-            Client.Username = Username;
+            Client.Username = UserName;
             var chat = new SuperDuperChat();
             chat.Location = Location;
             chat.StartPosition = StartPosition;
             chat.FormClosing += (x, y) => this.Show();
             chat.Show();
             this.Hide();
+            return chat;
+        }
+
+        private void On_LoginSuccessfull(string Username)
+        {
+            On_Log(Username);
         }
 
         private void On_LoginBanned(string Username)
         {
-            Client.Username = Username;
-            var chat = new SuperDuperChat();
-            chat.Location = Location;
-            chat.StartPosition = StartPosition;
-            chat.FormClosing += (x, y) => this.Show();
-            chat.Show();
+            var chat = On_Log(Username);
             chat.Ban();
-            this.Hide();
         }
-
+        
         private void On_LoginAdmin(string Username)
         {
             Client.Username = Username;

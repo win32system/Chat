@@ -16,7 +16,7 @@ namespace MultiRoomChatClient
         {
             InitializeComponent();
         }
-
+      
         public void SelectActive(RoomObjExt room)
         {
             var tab = this.tabControl1.SelectedTab;
@@ -25,6 +25,13 @@ namespace MultiRoomChatClient
 
         public void AddRoom(RoomObjExt room)
         {
+            foreach (TabPage tmp in this.tabControl1.TabPages)
+            {
+                if(tmp.Tag == room)
+                {
+                    return;
+                }
+            }
             //this.tabControl1 = new TabControl();
             TabPage tp = new TabPage(room.Name);
             tp.Tag = room;

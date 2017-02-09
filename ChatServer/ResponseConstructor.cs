@@ -41,7 +41,7 @@ namespace ChatServer
 
         public static string GetLoginResultNotification(string role, string username)  ////////////correction, string username
         {
-            return JsonConvert.SerializeObject(new RequestObject("login", role, null));
+            return JsonConvert.SerializeObject(new RequestObject("login", role, username));
         }
     }
 }

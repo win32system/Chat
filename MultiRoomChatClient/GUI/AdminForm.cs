@@ -14,7 +14,7 @@ namespace MultiRoomChatClient
     {
         public AdminForm() : base()
         {
-           // InitializeComponent();
+            InitializeComponent();
         }
     }
 }

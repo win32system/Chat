@@ -13,6 +13,7 @@ namespace MultiRoomChatClient
         
         public static void Login(string name)
         {
+
             Client.AddRequest(getLoginRequest("in", name));
         }
 
@@ -31,6 +32,7 @@ namespace MultiRoomChatClient
         {
             RequestObject reqObj = new RequestObject("msg", "msg", new ChatMessage(Client.Username, msg, DateTime.Now));
             Client.AddRequest(JsonConvert.SerializeObject(reqObj));
+
         }
 
         public static void SetActiveRoom(string room)

@@ -29,6 +29,7 @@ namespace MultiRoomChatClient
             if(msg.Length > 0)
             {
                 RequestManager.SendMessage(msg);
+                
                 //tree_Room.AddMessage(new ChatMessage(Client.))
                 //Manager.AddMessage(new ChatMessage(Client.Username, msg, DateTime.Now) ); //xz что должно отправляться 
             }
@@ -105,10 +106,10 @@ namespace MultiRoomChatClient
             var tag = tree_Room.SelectedNode.Tag;
             if (tag is RoomObjExt)
             {
+               
+               tabbedMessageList1.AddRoom(tag as RoomObjExt);
+               
                 //if (tabbedMessageList1.Equals(tag)) проверка существующей комнаты
-                
-                    tabbedMessageList1.AddRoom(tag as RoomObjExt);
-                
                 //tab.AddRoom(tag as RoomObjExt);
                 //Manager. AddRoom(tag as RoomObjExt);//  CreateRoom(  MoveTo( tag as RoomObjExt);
             }
