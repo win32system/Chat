@@ -43,15 +43,5 @@ namespace ChatServer
         {
             return JsonConvert.SerializeObject(new RequestObject("login", role, username));
         }
-
-        internal static string GetRoomCreatedNotification(string room)
-        {
-            return JsonConvert.SerializeObject(new RequestObject("room", "created", room));
-        }
-
-        internal static string GetRoomDeletedNotification(string room)
-        {
-            return JsonConvert.SerializeObject(new RequestObject("room", "closed", room));
-        }
     }
 }
