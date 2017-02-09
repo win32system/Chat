@@ -35,9 +35,10 @@ namespace MultiRoomChatClient
                 case "info":
                     if (req.Cmd == "all")
                     {
-                        if (((string)(req.args)).Length > 0)
+                        RoomObj[] rooms = JsonConvert.DeserializeObject<RoomObj[]>(req.args.ToString());
+                        if (rooms.Length > 0)
                         {
-                            roomDataReceived(JsonConvert.DeserializeObject<RoomObj[]>((string)req.args));
+                            roomDataReceived(rooms);//JsonConvert.DeserializeObject<RoomObj[]>((string)req.args));
                         }
                     }
                     break;
@@ -90,10 +91,10 @@ namespace MultiRoomChatClient
                     switch (req.Cmd)
                     {
                         case "created":
-                            roomCreated((string)req.args);
+                            roomCreated?.Invoke((string)req.args);
                             break;
                         case "removed":
-                            roomRemoved((string)req.args);
+                            roomRemoved?.Invoke((string)req.args);
                             break;
                         default: break;
                     }

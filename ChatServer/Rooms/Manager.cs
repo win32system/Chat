@@ -86,7 +86,7 @@ namespace ChatServer
 
         public static void OnRoomCreated(string room)
         {
-            BroadcastAll(ResponseConstructor.GetRoomCreatedNot(room));
+            BroadcastAll(ResponseConstructor.GetRoomCreatedNotification(room));
         }
 
         public static void OnRoomDeleted(string room)

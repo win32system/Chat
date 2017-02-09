@@ -27,6 +27,7 @@ namespace ChatServer
             Name = name;
             var history = HistoryDataprovider.GetHistory(name);
 
+            if (history != null) 
             foreach(ChatMessage msg in history)
             {
                 Messages.AddLast(msg);
