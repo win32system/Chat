@@ -16,6 +16,8 @@ namespace ChatServer
             try
             {
                 server = new ServerObject();
+                ///////RoomManager.Host = new RoomObject("Host");
+                ///////RoomManager.BindEvents();
                 listenThread = new Thread(new ThreadStart(server.Listen));
                 listenThread.Start(); //старт потока
             }
