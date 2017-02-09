@@ -21,7 +21,7 @@ namespace ChatServer
 
             if (IsAdmin(username))
             {
-                client.Role = new Admin();
+                client.Role = new Admin(client);
                 client.SendMessage(ResponseConstructor.GetLoginResultNotification("admin", username));
             }
             else if (IsInBlackList(username))
@@ -31,7 +31,7 @@ namespace ChatServer
             }
             else
             {
-                client.Role = new User();
+                client.Role = new User(client);
                 client.SendMessage(ResponseConstructor.GetLoginResultNotification("ok", username));
             }
             client.Username = username;

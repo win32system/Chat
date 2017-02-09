@@ -10,8 +10,10 @@ namespace ChatServer
 {
     public abstract class RoomObserverBase: IHandlerModule
     {
-        public readonly ClientObject client;
+        public ClientObject client;
         //protected RoomObject Active;
+
+
         public virtual void On_MessageReceived(string room, ChatMessage msg)
         {
             if(msg.Sender == client.Username)
@@ -21,7 +23,7 @@ namespace ChatServer
 
             //if(Active.Name == room)
             //{
-                client.SendMessage(JsonConvert.SerializeObject(new RequestObject("msg", null, msg)));
+                client.SendMessage(JsonConvert.SerializeObject(new RequestObject("msg", null, new object[] { room, msg })));
             //}
             //else
             //{
@@ -44,13 +46,13 @@ namespace ChatServer
             switch (request.Cmd)
             {
                 case "msg":
-                    object[] args = JsonConvert.DeserializeObject<object[]>((string)request.args);
-                    ChatMessage msg = JsonConvert.DeserializeObject<ChatMessage>((string)request.args);
+                    object[] args = (object[])JsonConvert.DeserializeObject(request.args.ToString());
+                    ChatMessage msg = args[1] as ChatMessage; //JsonConvert.DeserializeObject<ChatMessage>((string)request.args[0]);
                     RoomObject r = Manager.FindRoom((string)args[0]);
                     r.Broadcast(client, msg);
                     break;
                 case "active":
-                    args = JsonConvert.DeserializeObject<object[]>((string)request.args);
+                    args = JsonConvert.DeserializeObject<object[]>(request.args.ToString());
                     room = Manager.FindRoom((string)args[0]);
                     DateTime since = default(DateTime);
                     if (args[1] != null)

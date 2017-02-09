@@ -11,6 +11,13 @@ namespace ChatServer.Roles
     public abstract class RoleBase
     {
         protected IHandlerModule[] Handlers;
+        protected ClientObject client;
+
+        public RoleBase(ClientObject clnt)
+        {
+            this.client = clnt;
+        }
+
         public virtual void Handle(ClientObject client, string request)
         {
             RequestObject req = JsonConvert.DeserializeObject<RequestObject>(request);

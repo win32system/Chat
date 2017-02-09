@@ -8,9 +8,17 @@ namespace ChatServer.Roles
 {
     public class User : RoleBase
     {
-        public User()
+        public User(ClientObject clnt): base(clnt)
         {
-            Handlers = new IHandlerModule[] { new Logout(), new Info(), new Message(), new Private(), new Room() };
+            RoomObserver messageModule = new RoomObserver();
+            messageModule.client = clnt;
+
+            Handlers = new IHandlerModule[] {
+                messageModule,
+                new Logout(),
+                new Info(),
+                new Private(),
+                new Room() };
         }
     }
 }
