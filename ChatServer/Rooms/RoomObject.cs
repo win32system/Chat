@@ -81,6 +81,19 @@ namespace ChatServer
             }
         }
 
+        public void RemoveListener(string observer)
+        {
+            foreach(RoomObserverBase ro in Clients)
+            {
+                if(ro.client.Username == observer)
+                {
+                    Clients.Remove(ro);
+                    ClientRemoved?.Invoke(Name, ro.client.Username);
+                    break;
+                }
+            }
+        }
+
         public void BroadcastAll(string msg)
         {
             foreach(RoomObserverBase observer in Clients)

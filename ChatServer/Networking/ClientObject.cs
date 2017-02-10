@@ -37,44 +37,47 @@ namespace ChatServer
 
         private void Process()
         {
-            //try
-            //{
-            while (true)
+            try
             {
-                //try
-                //{
-                StreamReader sr = new StreamReader(Stream);
-                string message = sr.ReadLine();
-
-                if (message != null && message.Length > 0)
+                while (true)
                 {
-                    Console.WriteLine(message);
-                    MessageRecieved(this, message);
+                    try
+                    {
+                        StreamReader sr = new StreamReader(Stream);
+                        string message = sr.ReadLine();
+
+                        if (message != null && message.Length > 0)
+                        {
+                            Console.WriteLine(message);
+                            MessageRecieved(this, message);
+                        }
+                        Thread.Sleep(10);
+                    }
+                    catch (Exception e)
+                    {
+                        string message = String.Format("{0}: покинул чат", Username);
+                        Console.WriteLine(message);
+                        break;
+                    }
                 }
-                Thread.Sleep(10);
-                //}
-                //catch (Exception e)
-                //{
-                //    string message = String.Format("{0}: покинул чат", Person.userName);
-                //    Console.WriteLine(message);
-                //    Room.BroadcastMessage(this ,message);
-                //    break;
-                //}
             }
-            //}
-            //catch (Exception e)
-            //{
-            //     Console.WriteLine(e.Message);
-            // }
-            // finally
-            // {
-            //    Room.RemoveConnection(this);
-            //     Close();
-            // }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                
+                Close();
+            }
         }
 
         public void SendMessage(string message)
         {
+            if(Stream == null)
+            {
+                return;
+            }
             StreamWriter sw = new StreamWriter(Stream);
             sw.WriteLine(message + '\n');
             sw.Flush();
@@ -83,6 +86,7 @@ namespace ChatServer
 
         public void Close()
         {
+            Manager.UserDisconnect(Username);
             WorkerThread?.Abort();
             if (Stream != null)
                 Stream.Close();
