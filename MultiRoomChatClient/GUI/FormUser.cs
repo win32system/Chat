@@ -100,8 +100,8 @@ namespace MultiRoomChatClient
 
         private void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
             Manager = null;
-            //Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned -= () => Invoke(new Action(Ban));
             RequestManager.Logout();
             Client.Disconnect();

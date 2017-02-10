@@ -18,7 +18,7 @@ namespace ChatServer
             }
 
             string username = (string)request.args;
-
+            client.Username = username;
             if (IsAdmin(username))
             {
                 client.Role = new Admin(client);
@@ -34,7 +34,7 @@ namespace ChatServer
                 client.Role = new User(client);
                 client.SendMessage(ResponseConstructor.GetLoginResultNotification("ok", username));
             }
-            client.Username = username;
+            
             return true;
         }
 
