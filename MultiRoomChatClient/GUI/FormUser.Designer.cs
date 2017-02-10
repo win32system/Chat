@@ -33,7 +33,7 @@
             this.btn_createRoom = new System.Windows.Forms.Button();
             this.btn_send = new System.Windows.Forms.Button();
             this.tb_message = new System.Windows.Forms.TextBox();
-            this.textBox_newRoom = new System.Windows.Forms.TextBox();
+            this.tb_newRoom = new System.Windows.Forms.TextBox();
             this.btn_closeRoom = new System.Windows.Forms.Button();
             this.tabbedMessageList1 = new MultiRoomChatClient.TabbedMessageList();
             this.SuspendLayout();
@@ -43,7 +43,6 @@
             resources.ApplyResources(this.tree_Room, "tree_Room");
             this.tree_Room.Name = "tree_Room";
             this.tree_Room.DoubleClick += new System.EventHandler(this.tree_Room_MouseDoubleClick);
-            this.tree_Room.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tree_Room_MouseClick);
             // 
             // btn_createRoom
             // 
@@ -66,8 +65,8 @@
             // 
             // textBox_newRoom
             // 
-            resources.ApplyResources(this.textBox_newRoom, "textBox_newRoom");
-            this.textBox_newRoom.Name = "textBox_newRoom";
+            resources.ApplyResources(this.tb_newRoom, "textBox_newRoom");
+            this.tb_newRoom.Name = "textBox_newRoom";
             // 
             // btn_closeRoom
             // 
@@ -87,7 +86,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabbedMessageList1);
             this.Controls.Add(this.btn_closeRoom);
-            this.Controls.Add(this.textBox_newRoom);
+            this.Controls.Add(this.tb_newRoom);
             this.Controls.Add(this.tb_message);
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.btn_createRoom);
@@ -104,7 +103,7 @@
         private System.Windows.Forms.Button btn_createRoom;
         private System.Windows.Forms.Button btn_send;
         private System.Windows.Forms.TextBox tb_message;
-        private System.Windows.Forms.TextBox textBox_newRoom;
+        private System.Windows.Forms.TextBox tb_newRoom;
         private System.Windows.Forms.Button btn_closeRoom;
         private TabbedMessageList tabbedMessageList1;
     }

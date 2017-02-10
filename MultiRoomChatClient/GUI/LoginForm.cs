@@ -18,7 +18,7 @@ namespace MultiRoomChatClient
             InitializeComponent();
             ResponseHandler.loginSuccessfull += (x) => Invoke(new Action<string>(On_LoginSuccessfull), x);
             ResponseHandler.loggedAsAdmin    += (x) => Invoke(new Action<string>(On_LoginAdmin), x);
-            ResponseHandler.loggedBanned     += (x) => Invoke(new Action<string>(On_LoginBanned), x) ;///213123123 
+            ResponseHandler.loggedBanned     += (x) => Invoke(new Action<string>(On_LoginBanned), x) ;
             ResponseHandler.loginFail        += (x) => Invoke(new Action(On_LoginFailed));
         }
 

@@ -26,6 +26,7 @@ namespace MultiRoomChatClient
                 Messages.AddRange(h);
             }
         }
+
         private void btn_send_Click(object sender, EventArgs e)
         {
             string message = text_msg.Text;

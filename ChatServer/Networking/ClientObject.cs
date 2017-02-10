@@ -34,43 +34,43 @@ namespace ChatServer
             WorkerThread = new Thread(new ThreadStart(Process));
             WorkerThread.Start();
         }
-        
+
         private void Process()
         {
             //try
             //{
-                while (true)
-                {
+            while (true)
+            {
                 //try
                 //{
                 StreamReader sr = new StreamReader(Stream);
                 string message = sr.ReadLine();
 
                 if (message != null && message.Length > 0)
-                        {
-                            Console.WriteLine(message);
-                            MessageRecieved(this, message);
-                        }
-                        Thread.Sleep(10);
-                    //}
-                    //catch (Exception e)
-                    //{
-                    //    string message = String.Format("{0}: покинул чат", Person.userName);
-                    //    Console.WriteLine(message);
-                    //    Room.BroadcastMessage(this ,message);
-                    //    break;
-                    //}
+                {
+                    Console.WriteLine(message);
+                    MessageRecieved(this, message);
                 }
+                Thread.Sleep(10);
+                //}
+                //catch (Exception e)
+                //{
+                //    string message = String.Format("{0}: покинул чат", Person.userName);
+                //    Console.WriteLine(message);
+                //    Room.BroadcastMessage(this ,message);
+                //    break;
+                //}
+            }
             //}
             //catch (Exception e)
             //{
-           //     Console.WriteLine(e.Message);
-           // }
-           // finally
-           // {
+            //     Console.WriteLine(e.Message);
+            // }
+            // finally
+            // {
             //    Room.RemoveConnection(this);
-           //     Close();
-           // }
+            //     Close();
+            // }
         }
 
         public void SendMessage(string message)

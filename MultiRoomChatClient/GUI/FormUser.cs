@@ -21,8 +21,12 @@ namespace MultiRoomChatClient
             InitializeComponent();
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
-            ResponseHandler.Banned += () => Invoke(new Action(Ban));
-
+            ResponseHandler.Banned  += () => Invoke(new Action(Ban));
+            //ResponseHandler.privateMessageReceived += (msg) =>
+            //{
+            //    PrivateMessageForm PmForm = new PrivateMessageForm(msg.ToString());
+            //    PmForm.Show();
+            //};
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -66,12 +70,12 @@ namespace MultiRoomChatClient
 
         private void btn_createRoom_Click(object sender, EventArgs e)
         {
-            string newRoom = textBox_newRoom.Text;
+            string newRoom = tb_newRoom.Text;
             if (newRoom.Length > 0)
             {
                 Manager.CreateRoom(newRoom);
             }
-            textBox_newRoom.Clear();
+            tb_newRoom.Clear();
         }
 
         public void Ban()
@@ -80,10 +84,10 @@ namespace MultiRoomChatClient
             tb_message.Enabled = false;
             btn_createRoom.Enabled = false;
         }
-      
+        public delegate void tree_user(string name);
+        public event tree_user treename;
         private void tree_Room_MouseDoubleClick(object sender, EventArgs e)
         {
-
             if (tree_Room.SelectedNode == null)
                 return;
 
@@ -92,22 +96,12 @@ namespace MultiRoomChatClient
             {
                 tabbedMessageList1.AddRoom(tag as RoomObjExt);
             }
-            else if (tag is string)
+            else if ((tag is string) && tag.ToString() != Client.Username.ToString())
             {
                 PrivateMessageForm PmForm = new PrivateMessageForm(tag as string);
+                this.treename?.Invoke(tag.ToString());
                 PmForm.Show();
             }
-        }
-
-        public delegate void tree_user(string name);
-        public event tree_user treename;
-        private void tree_Room_MouseClick(object sender, MouseEventArgs e)
-        {
-            var tree = tree_Room.SelectedNode;
-            if (tree == null || !(tree.Tag is string))
-                return;
-
-            this.treename?.Invoke(tree.Tag.ToString());
         }
     }
 }

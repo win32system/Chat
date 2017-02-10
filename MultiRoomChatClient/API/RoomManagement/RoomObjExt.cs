@@ -98,10 +98,10 @@ namespace MultiRoomChatClient
             OnMessageReceived(room, msg);
         }
 
-        public void Suspend()
-        {
-            active = false;
-        }
+        //public void Suspend()
+        //{
+        //    active = false;
+        //}
 
         public void OnDataReceived(ChatMessage[] msg)
         {
@@ -111,7 +111,7 @@ namespace MultiRoomChatClient
 
         public RoomObjExt(string Name): base(Name){}
 
-        public RoomObjExt() : base(){}
+      //  public RoomObjExt() : base(){}
 
         public List<ChatMessage> Messages = new List<ChatMessage>();
 
