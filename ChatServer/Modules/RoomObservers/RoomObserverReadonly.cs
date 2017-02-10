@@ -25,7 +25,8 @@ namespace ChatServer
                     DateTime since = default(DateTime);
                     if (args[1] != null)
                     {
-                        since = JsonConvert.DeserializeObject<DateTime>((string)args[1]);
+                        //since = JsonConvert.DeserializeObject<DateTime>((string)args[1]);
+                        since = (DateTime)args[1];
                     }
                     if (room != null)
                     {
