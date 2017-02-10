@@ -26,12 +26,30 @@ namespace MultiRoomChatClient
 
         public void AppendSequence(string room, ChatMessage[] messages)
         {
+            List<ChatMessage> history = new List<ChatMessage>(GetHistory(room));
 
-            string[] text = new string[messages.Length];
-            for(int i = 0; i< text.Length; i++)
+            int i = history.Count;
+            while(i > 0)
             {
-                text[i] = JsonConvert.SerializeObject(messages[i]);
+                if(messages[0].TimeStamp == history[i].TimeStamp)
+                {
+                    i++;
+                    break;
+                }
+                i--;
             }
+            history.RemoveRange(i, history.Count - i);
+            for(int j =0; j < messages.Length; j++)
+            {
+                history.Add(messages[j]);
+            }
+
+            string[] text = new string[history.Count];
+            for(int j = 0; j< text.Length; j++)
+            {
+                text[j] = JsonConvert.SerializeObject(messages[j]);
+            }
+
             File.AppendAllLines(folder + room, text);
         }
 
