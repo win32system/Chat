@@ -26,6 +26,7 @@ namespace MultiRoomChatClient
 
         public void AppendSequence(string room, ChatMessage[] messages)
         {
+
             string[] text = new string[messages.Length];
             for(int i = 0; i< text.Length; i++)
             {

@@ -21,6 +21,7 @@ namespace MultiRoomChatClient
             InitializeComponent();
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
+            ResponseHandler.Banned += () => Invoke(new Action(Ban));
         }
 
         private void btn_send_Click(object sender, EventArgs e)
