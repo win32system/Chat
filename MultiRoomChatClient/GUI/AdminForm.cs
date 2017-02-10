@@ -15,9 +15,8 @@ namespace MultiRoomChatClient
         public AdminForm() : base()
         {
             InitializeComponent();
+            this.treename += (x) => tb_selectedUser.Text = x;
         }
-
-      
         private void btn_banForever_Click(object sender, EventArgs e)
         {
             RequestManager.AdminBanEternal(tb_selectedUser.Text.ToString());

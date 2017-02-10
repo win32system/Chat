@@ -75,6 +75,7 @@
             // 
             // tb_selectedUser
             // 
+            this.tb_selectedUser.Enabled = false;
             this.tb_selectedUser.Location = new System.Drawing.Point(506, 13);
             this.tb_selectedUser.Name = "tb_selectedUser";
             this.tb_selectedUser.Size = new System.Drawing.Size(104, 20);

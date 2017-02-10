@@ -21,6 +21,7 @@ namespace MultiRoomChatClient
             InitializeComponent();
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
+            ResponseHandler.Banned += () => Invoke(new Action(Ban));
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -28,12 +29,8 @@ namespace MultiRoomChatClient
             string msg = tb_message.Text;
             if(msg.Length > 0)
             {
-                //RequestManager.SendMessage(msg);
-                tabbedMessageList1.SendMessage(msg);
-                //tree_Room.AddMessage(new ChatMessage(Client.))
-                //Manager.AddMessage(new ChatMessage(Client.Username, msg, DateTime.Now) ); //xz что должно отправляться 
+                tabbedMessageList1.SendMessage(msg);   
             }
-
             tb_message.Clear();
         }
 
@@ -44,11 +41,6 @@ namespace MultiRoomChatClient
             {
                 TreeNode roomNode = RoomToTreeNode(room);
                 tree_Room.Nodes.Add(roomNode);
-                //tree_Room.Nodes.Add(roomNode);
-                /*     if(Manager.Active == room)
-                     {
-                         roomNode.BackColor = Color.Blue;
-                     }*/
             }
         }
 
@@ -87,41 +79,34 @@ namespace MultiRoomChatClient
             tb_message.Enabled = false;
             btn_createRoom.Enabled = false;
         }
-       // TabbedMessageList tab = new TabbedMessageList();
-        private void tree_Room_MouseDoubleClick(object sender, MouseEventArgs e)
+      
+        private void tree_Room_MouseDoubleClick(object sender, EventArgs e)
         {
-            // MessageBox.Show(tree_Room.SelectedNode.Text);
-            //    var tag = tree_Room.SelectedNode.Tag;
-            //    if (tag is RoomObjExt)
-            //    {
-            //        Manager.FindRoom(tree_Room.SelectedNode.Text);
-            ////        PrivateMessageForm PmForm = new PrivateMessageForm() 
-            ////PrivateMessageForm 
-            ////}
-            //else if(tag is string)
-            //{
-            //    PrivateMessageForm pmForm = new PrivateMessageForm("lil"); //tag as string);
-            //    pmForm.Show();
-            //}
-            if(tree_Room.SelectedNode == null)
-            {
+
+            if (tree_Room.SelectedNode == null)
                 return;
-            }
+
             var tag = tree_Room.SelectedNode.Tag;
             if (tag is RoomObjExt)
             {
-               
-               tabbedMessageList1.AddRoom(tag as RoomObjExt);
-               
-                //if (tabbedMessageList1.Equals(tag)) проверка существующей комнаты
-                //tab.AddRoom(tag as RoomObjExt);
-                //Manager. AddRoom(tag as RoomObjExt);//  CreateRoom(  MoveTo( tag as RoomObjExt);
+                tabbedMessageList1.AddRoom(tag as RoomObjExt);
             }
             else if (tag is string)
             {
                 PrivateMessageForm PmForm = new PrivateMessageForm(tag as string);
                 PmForm.Show();
             }
+        }
+
+        public delegate void tree_user(string name);
+        public event tree_user treename;
+        private void tree_Room_MouseClick(object sender, MouseEventArgs e)
+        {
+            var tree = tree_Room.SelectedNode;
+            if (tree == null || !(tree.Tag is string))
+                return;
+
+            this.treename.Invoke(tree.Tag.ToString());
         }
     }
 }

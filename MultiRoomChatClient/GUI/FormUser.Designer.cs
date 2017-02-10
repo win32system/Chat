@@ -42,7 +42,8 @@
             // 
             resources.ApplyResources(this.tree_Room, "tree_Room");
             this.tree_Room.Name = "tree_Room";
-            this.tree_Room.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tree_Room_MouseDoubleClick);
+            this.tree_Room.DoubleClick += new System.EventHandler(this.tree_Room_MouseDoubleClick);
+            this.tree_Room.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tree_Room_MouseClick);
             // 
             // btn_createRoom
             // 

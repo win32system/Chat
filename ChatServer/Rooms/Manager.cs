@@ -78,7 +78,10 @@ namespace ChatServer
         {
             foreach (ClientObject client in Clients)
             {
-                client.SendMessage(message);
+                if (client.Username != "admin")
+                {
+                    client.SendMessage(message);
+                }
             }
         }
 

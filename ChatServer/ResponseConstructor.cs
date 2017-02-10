@@ -39,7 +39,7 @@ namespace ChatServer
             return JsonConvert.SerializeObject(new RequestObject("admin", "unban", username));
         }
 
-        public static string GetLoginResultNotification(string role, string username)  ////////////correction, string username
+        public static string GetLoginResultNotification(string role, string username)
         {
             return JsonConvert.SerializeObject(new RequestObject("login", role, username));
         }
