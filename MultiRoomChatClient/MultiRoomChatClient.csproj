@@ -54,6 +54,7 @@
     <Compile Include="API\Networking\Client.cs" />
     <Compile Include="API\Controller\RequestManager.cs" />
     <Compile Include="API\Controller\ResponseHandler.cs" />
+    <Compile Include="API\RoomManagement\PrivateManager.cs" />
     <Compile Include="API\RoomManagement\RoomManager.cs" />
     <Compile Include="API\RoomManagement\RoomObjExt.cs" />
     <Compile Include="GUI\AdminForm.cs">

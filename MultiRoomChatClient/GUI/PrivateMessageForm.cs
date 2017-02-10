@@ -11,20 +11,27 @@ using System.Windows.Forms;
 
 namespace MultiRoomChatClient
 {
-    public partial class PrivateMessageForm : Form
+    public partial class  PrivateMessageForm : Form
     {
-        private string Recipient;
+        public string Recipient;
         private List<ChatMessage> Messages;
         public PrivateMessageForm(string username)
         {
             InitializeComponent();
             Messages = new List<ChatMessage>();
             Recipient = username;
+            Text = username;
             var h = Client.PrivateHistory.GetHistory(Client.Username + @"-" + Recipient);
             if(h!= null)
             {
                 Messages.AddRange(h);
             }
+        }
+
+        public void AppendMessage(ChatMessage msg)
+        {
+            list_msg.Items.Add(msg);
+            Client.PrivateHistory.AppendMessage(Client.Username + @"-" + Recipient, msg);
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -33,8 +40,7 @@ namespace MultiRoomChatClient
             ChatMessage msg = new ChatMessage(Client.Username, message, DateTime.Now);
             if(message.Length > 0)
             {
-                list_msg.Items.Add(msg);
-                Client.PrivateHistory.AppendMessage(Client.Username + @"-" + Recipient, msg);
+                AppendMessage(msg);
                 RequestManager.SendPrivateMessage(Recipient, msg);
             }
         }

@@ -15,18 +15,15 @@ namespace MultiRoomChatClient
     public partial class SuperDuperChat : Form
     {
         RoomManager Manager;
+        PrivateManager PrivateManger;
 
         public SuperDuperChat()
         {
             InitializeComponent();
             Manager = new RoomManager();
+            PrivateManger = new PrivateManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
-            ResponseHandler.privateMessageReceived += (msg) =>
-            {
-                PrivateMessageForm PmForm = new PrivateMessageForm(msg.Sender);
-                PmForm.Show();
-            };
         }
 
         private void btn_send_Click(object sender, EventArgs e)
