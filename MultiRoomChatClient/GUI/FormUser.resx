@@ -216,25 +216,25 @@
   <data name="&gt;&gt;tb_message.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="textBox_newRoom.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tb_newRoom.Location" type="System.Drawing.Point, System.Drawing">
     <value>363, 195</value>
   </data>
-  <data name="textBox_newRoom.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tb_newRoom.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 20</value>
   </data>
-  <data name="textBox_newRoom.TabIndex" type="System.Int32, mscorlib">
+  <data name="tb_newRoom.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;textBox_newRoom.Name" xml:space="preserve">
-    <value>textBox_newRoom</value>
+  <data name="&gt;&gt;tb_newRoom.Name" xml:space="preserve">
+    <value>tb_newRoom</value>
   </data>
-  <data name="&gt;&gt;textBox_newRoom.Type" xml:space="preserve">
+  <data name="&gt;&gt;tb_newRoom.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBox_newRoom.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tb_newRoom.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;textBox_newRoom.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tb_newRoom.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="btn_closeRoom.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -4123,9 +4123,6 @@
         KysqBAAAAAAAAAAAAAAAAAAAAAAAAAAA4ccAAMCDAADAAwAAwAMAAOADAADAAwAAgAMAAMADAADgAwAA
         wAMAAMADAADgBwAA+D8AAPgfAAD4PwAA+B8AAA==
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>SuperDuperChat</value>

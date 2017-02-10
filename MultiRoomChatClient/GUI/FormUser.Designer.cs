@@ -63,10 +63,10 @@
             resources.ApplyResources(this.tb_message, "tb_message");
             this.tb_message.Name = "tb_message";
             // 
-            // textBox_newRoom
+            // tb_newRoom
             // 
-            resources.ApplyResources(this.tb_newRoom, "textBox_newRoom");
-            this.tb_newRoom.Name = "textBox_newRoom";
+            resources.ApplyResources(this.tb_newRoom, "tb_newRoom");
+            this.tb_newRoom.Name = "tb_newRoom";
             // 
             // btn_closeRoom
             // 
@@ -92,6 +92,8 @@
             this.Controls.Add(this.btn_createRoom);
             this.Controls.Add(this.tree_Room);
             this.Name = "SuperDuperChat";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SuperDuperChat_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SuperDuperChat_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

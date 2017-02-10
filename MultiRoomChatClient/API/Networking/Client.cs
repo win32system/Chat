@@ -115,9 +115,16 @@ namespace MultiRoomChatClient
         {
             processThread.Abort();
             if (stream != null)
+            {
                 stream.Close();//отключение потока
+                stream = null;
+            }
             if (client != null)
+            {
                 client.Close();//отключение клиента
+                client = null;
+            }
+               
         }
     }
 }

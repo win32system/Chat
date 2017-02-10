@@ -21,7 +21,7 @@ namespace MultiRoomChatClient
             InitializeComponent();
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
-            ResponseHandler.Banned  += () => Invoke(new Action(Ban));
+            ResponseHandler.Banned += () => Invoke(new Action(Ban));
             //ResponseHandler.privateMessageReceived += (msg) =>
             //{
             //    PrivateMessageForm PmForm = new PrivateMessageForm(msg.ToString());
@@ -62,12 +62,6 @@ namespace MultiRoomChatClient
             return roomNode;
         }
 
-        private void btn_exit_Click(object sender, EventArgs e)
-        {
-            RequestManager.Logout();
-            this.Close();
-        }
-
         private void btn_createRoom_Click(object sender, EventArgs e)
         {
             string newRoom = tb_newRoom.Text;
@@ -102,6 +96,20 @@ namespace MultiRoomChatClient
                 this.treename?.Invoke(tag.ToString());
                 PmForm.Show();
             }
+        }
+
+        private void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Manager = null;
+            //Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
+            ResponseHandler.Banned -= () => Invoke(new Action(Ban));
+            RequestManager.Logout();
+            Client.Disconnect();
+        }
+
+        private void SuperDuperChat_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dispose();
         }
     }
 }

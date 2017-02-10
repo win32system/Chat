@@ -13,20 +13,13 @@ namespace MultiRoomChatClient
         
         public static void Login(string name)
         {
-
-            Client.AddRequest(getLoginRequest("in", name));
+            Client.AddRequest(JsonConvert.SerializeObject(new RequestObject("login", "in", name)));
         }
 
         public static void Logout()
         {
-            Client.AddRequest(getLoginRequest("out", null));
+            Client.AddRequest(JsonConvert.SerializeObject(new RequestObject("logout", null, null)));
         }
-
-        private static string getLoginRequest(string cmd, object args)
-        {
-            return JsonConvert.SerializeObject(new RequestObject("login", cmd, args));
-        }
-
 
         public static void SendMessage(string msg, string room)
         {
