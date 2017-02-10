@@ -56,8 +56,6 @@ namespace ChatServer
             return true;
         }*/
 
-        protected override void HandleMessage(ClientObject client, RequestObject request)
-        {
-        }
+        protected override void HandleMessage(ClientObject client, RequestObject request){}
     }
 }
