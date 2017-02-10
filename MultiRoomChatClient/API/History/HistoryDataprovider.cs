@@ -21,7 +21,8 @@ namespace MultiRoomChatClient
 
         public void AppendMessage(string room, ChatMessage message)
         {
-            File.AppendAllLines(folder + room, new string[] { JsonConvert.SerializeObject(message) });
+           
+                File.AppendAllLines(folder + room, new string[] { JsonConvert.SerializeObject(message.ToString()) });
         }
 
         public void AppendSequence(string room, ChatMessage[] messages)

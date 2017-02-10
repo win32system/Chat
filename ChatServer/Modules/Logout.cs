@@ -15,8 +15,9 @@ namespace ChatServer
             {
                 return false;
             }
-
+            
             client.Close();
+            
             return true;
         }
     }

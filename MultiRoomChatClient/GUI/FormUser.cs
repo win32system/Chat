@@ -22,6 +22,7 @@ namespace MultiRoomChatClient
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
+
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -106,7 +107,7 @@ namespace MultiRoomChatClient
             if (tree == null || !(tree.Tag is string))
                 return;
 
-            this.treename.Invoke(tree.Tag.ToString());
+            this.treename?.Invoke(tree.Tag.ToString());
         }
     }
 }

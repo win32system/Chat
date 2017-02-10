@@ -17,7 +17,7 @@ namespace MultiRoomChatClient
 
         public static void ProcessResponse(string Json)
         {
-            Console.WriteLine(Json); //////////////////////// ///////////////////////////////////////////
+            //Console.WriteLine(Json); 
             RequestObject req = JsonConvert.DeserializeObject<RequestObject>(Json);
 
             switch (req.Module)
@@ -47,7 +47,7 @@ namespace MultiRoomChatClient
                     switch (req.Cmd)
                     {
                         case "ok":
-                                loginSuccessfull?.Invoke((string)req.args);
+                            loginSuccessfull?.Invoke((string)req.args);
                             break;
                         case "admin":
                             loggedAsAdmin?.Invoke((string)req.args);
