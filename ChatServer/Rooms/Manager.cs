@@ -87,6 +87,22 @@ namespace ChatServer
             BroadcastAll(ResponseConstructor.GetUserEnteredNotification(room, username));
         }
 
+        internal static void UserDisconnect(string username)
+        {
+            foreach(RoomObject r in Rooms)
+            {
+                r.RemoveListener(username);
+            }
+            foreach(ClientObject client in Clients)
+            {
+                if(client.Username == username)
+                {
+                    Clients.Remove(client);
+                    break;
+                }
+            }
+        }
+
         public static void OnClientLeft(string room, string username)
         {
             BroadcastAll(ResponseConstructor.GetUserLeftNotification(room, username));

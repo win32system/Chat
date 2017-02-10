@@ -15,11 +15,7 @@ namespace ChatServer
             {
                 return false;
             }
-           
-            foreach(RoomObject r in Manager.Rooms)
-            {
-                r.BroadcastAll(ResponseConstructor.GetUserLeftNotification(r.Name, client.Username));
-            }
+        
             client.Close();
             
             return true;
