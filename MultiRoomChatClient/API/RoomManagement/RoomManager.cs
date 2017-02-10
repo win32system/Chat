@@ -25,14 +25,16 @@ namespace MultiRoomChatClient
             RequestManager.RequestData();
         }
 
-        private void RemoveUser(string username, string room)
+        private void RemoveUser(string room, string username)
         {
             FindRoom(room)?.clients.Remove(username);
+            RoomDataUpdated?.Invoke();
         }
 
-        private void AddUser(string username, string room)
+        private void AddUser(string room, string username)
         {
             FindRoom(room)?.clients.Add(username);
+            RoomDataUpdated?.Invoke();
         }
 
         public RoomObjExt FindRoom(string name)
@@ -77,19 +79,19 @@ namespace MultiRoomChatClient
             RoomDataUpdated?.Invoke();
         }
 
-        public void MoveTo(RoomObjExt room)
-        {
-           /* if (Active != room)
-            {
-                Active = room;
-                RequestManager.MoveToRoom(room.Name);
-            }
+        //public void MoveTo(RoomObjExt room)
+        //{
+        //   /* if (Active != room)
+        //    {
+        //        Active = room;
+        //        RequestManager.MoveToRoom(room.Name);
+        //    }
 
-            LoadMessageHistory();
-            RequestUpdateMessageList();*/
-            MessageListUpdated?.Invoke();
-            RoomDataUpdated?.Invoke();
-        }
+        //    LoadMessageHistory();
+        //    RequestUpdateMessageList();*/
+        //    MessageListUpdated?.Invoke();
+        //    RoomDataUpdated?.Invoke();
+        //}
 
         /**/
 
