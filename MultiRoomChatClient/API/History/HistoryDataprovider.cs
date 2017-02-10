@@ -22,7 +22,7 @@ namespace MultiRoomChatClient
         public void AppendMessage(string room, ChatMessage message)
         {
            
-                File.AppendAllLines(folder + room, new string[] { JsonConvert.SerializeObject(message.ToString()) });
+                File.AppendAllLines(folder + room, new string[] { JsonConvert.SerializeObject(message) });
         }
 
         public void AppendSequence(string room, ChatMessage[] messages)

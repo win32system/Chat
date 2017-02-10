@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using ChatServer.Roles;
+using Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,7 @@ namespace ChatServer
             List<string> users = new List<string>();
             foreach(RoomObserverBase clnt in Clients)
             {
+                if(clnt.client.Role.GetType() != typeof(Admin))
                 users.Add(clnt.client.Username);
             }
             res.clients = users;

@@ -10,7 +10,7 @@ namespace ChatServer
 {
     public class MessageReadonly : RoomObserverBase
     {
-        public override bool Handle(ClientObject client, RequestObject request)
+        /*public override bool Handle(ClientObject client, RequestObject request)
         {
             if (request.Module != "msg")
             {
@@ -54,6 +54,10 @@ namespace ChatServer
                 default: break;
             }
             return true;
+        }*/
+
+        protected override void HandleMessage(ClientObject client, RequestObject request)
+        {
         }
     }
 }
