@@ -73,6 +73,7 @@
             resources.ApplyResources(this.btn_closeRoom, "btn_closeRoom");
             this.btn_closeRoom.Name = "btn_closeRoom";
             this.btn_closeRoom.UseVisualStyleBackColor = true;
+            this.btn_closeRoom.Click += new System.EventHandler(this.btn_closeRoom_Click);
             // 
             // tabbedMessageList1
             // 
@@ -93,7 +94,6 @@
             this.Controls.Add(this.tree_Room);
             this.Name = "SuperDuperChat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SuperDuperChat_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SuperDuperChat_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

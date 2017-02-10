@@ -80,7 +80,7 @@ namespace MultiRoomChatClient
                             UserEntered?.Invoke((string)args[0], (string)args[1]);
                             break;
                         case "left":
-                            args = JsonConvert.DeserializeObject<string[]>((string)req.args);
+                            args = JsonConvert.DeserializeObject<string[]>(req.args.ToString());
                             UserLeft?.Invoke((string)args[0], (string)args[1]);
                             break;
                     }

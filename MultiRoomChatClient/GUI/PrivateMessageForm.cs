@@ -35,7 +35,7 @@ namespace MultiRoomChatClient
             {
                 list_msg.Items.Add(msg);
                 Client.PrivateHistory.AppendMessage(Client.Username + @"-" + Recipient, msg);
-                RequestManager.SendPrivateMessage(Client.Username, msg);
+                RequestManager.SendPrivateMessage(Recipient, msg);
             }
         }
     }

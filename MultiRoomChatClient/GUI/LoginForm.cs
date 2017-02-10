@@ -22,6 +22,8 @@ namespace MultiRoomChatClient
             ResponseHandler.loginFail        += (x) => Invoke(new Action(On_LoginFailed));
         }
 
+        public LinkedList<PrivateMessageForm> PmForms = new LinkedList<PrivateMessageForm>();
+
         private void btn_connect_Click(object sender, EventArgs e)
         {
             if (login_box.Text == null || login_box.Text == "")

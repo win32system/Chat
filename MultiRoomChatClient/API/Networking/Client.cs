@@ -113,7 +113,11 @@ namespace MultiRoomChatClient
 
         public static void Disconnect()
         {
-            processThread.Abort();
+            while(messageQue.First != null)
+            {
+
+            }
+            processThread?.Abort();
             if (stream != null)
             {
                 stream.Close();//отключение потока

@@ -22,11 +22,11 @@ namespace MultiRoomChatClient
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
-            //ResponseHandler.privateMessageReceived += (msg) =>
-            //{
-            //    PrivateMessageForm PmForm = new PrivateMessageForm(msg.ToString());
-            //    PmForm.Show();
-            //};
+            ResponseHandler.privateMessageReceived += (msg) =>
+            {
+                PrivateMessageForm PmForm = new PrivateMessageForm(msg.Sender);
+                PmForm.Show();
+            };
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -97,19 +97,20 @@ namespace MultiRoomChatClient
                 PmForm.Show();
             }
         }
+        private void btn_closeRoom_Click(object sender, EventArgs e)
+        {
+            tabbedMessageList1.CloseRoom();
+        }
 
         private void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
         {
+            tabbedMessageList1.CloseAllRooms();
             Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
-            Manager = null;
             ResponseHandler.Banned -= () => Invoke(new Action(Ban));
             RequestManager.Logout();
             Client.Disconnect();
         }
 
-        private void SuperDuperChat_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Dispose();
-        }
+       
     }
 }

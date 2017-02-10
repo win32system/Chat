@@ -81,7 +81,7 @@ namespace ChatServer
             Console.WriteLine(this.Username + ": " + message);
         }
 
-        protected internal void Close()
+        public void Close()
         {
             WorkerThread?.Abort();
             if (Stream != null)
