@@ -68,6 +68,7 @@ namespace ChatServer
             if (!Clients.Contains(observer))
             {
                 Clients.AddLast(observer);
+                if(observer.client.Role.GetType() != typeof(Admin))
                 ClientAdded?.Invoke(Name, observer.client.Username);
             }
         }
