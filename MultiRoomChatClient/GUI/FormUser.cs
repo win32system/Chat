@@ -15,15 +15,44 @@ namespace MultiRoomChatClient
     public partial class SuperDuperChat : Form
     {
         RoomManager Manager;
-        PrivateManager PrivateManger;
+        public LinkedList<PrivateMessageForm> PMForms = new LinkedList<PrivateMessageForm>();
+
+        public delegate void tree_user(string name);
+        public event tree_user treename;
 
         public SuperDuperChat()
         {
             InitializeComponent();
             Manager = new RoomManager();
-            PrivateManger = new PrivateManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
+            ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
+        }
+
+        public void HandleMessage(ChatMessage msg)
+        {
+            string sender = msg.Sender;
+            PrivateMessageForm roomToHandle = null;
+            foreach (PrivateMessageForm f in PMForms)
+            {
+                if (f.Recipient == sender)
+                {
+                    roomToHandle = f;
+                }
+            }
+            if (roomToHandle == null)
+            {
+                roomToHandle = new PrivateMessageForm(sender, this);
+                PMForms.AddLast(roomToHandle);
+                roomToHandle.Show();
+            }
+            roomToHandle.AppendMessage(msg);
+            roomToHandle.BringToFront();
+        }
+
+        public void PMFormRemove(PrivateMessageForm PMForm)
+        {
+            PMForms.Remove(PMForm);
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -75,8 +104,7 @@ namespace MultiRoomChatClient
             tb_message.Enabled = false;
             btn_createRoom.Enabled = false;
         }
-        public delegate void tree_user(string name);
-        public event tree_user treename;
+        
         private void tree_Room_MouseDoubleClick(object sender, EventArgs e)
         {
             if (tree_Room.SelectedNode == null)
@@ -89,7 +117,7 @@ namespace MultiRoomChatClient
             }
             else if ((tag is string) && tag.ToString() != Client.Username.ToString())
             {
-                PrivateMessageForm PmForm = new PrivateMessageForm(tag as string);
+                PrivateMessageForm PmForm = new PrivateMessageForm(tag as string, this);
                 this.treename?.Invoke(tag.ToString());
                 PmForm.Show();
             }

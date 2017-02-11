@@ -60,6 +60,7 @@
             // 
             // PrivateMessageForm
             // 
+            this.AcceptButton = this.btn_send;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 225);
@@ -68,6 +69,7 @@
             this.Controls.Add(this.list_msg);
             this.Name = "PrivateMessageForm";
             this.Text = "PrivateMessageForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PrivateMessageForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

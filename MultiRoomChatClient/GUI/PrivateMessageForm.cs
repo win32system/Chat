@@ -15,9 +15,11 @@ namespace MultiRoomChatClient
     {
         public string Recipient;
         private List<ChatMessage> Messages;
-        public PrivateMessageForm(string username)
+        public SuperDuperChat Parent;
+        public PrivateMessageForm(string username, SuperDuperChat p)
         {
             InitializeComponent();
+            this.Parent = p;
             Messages = new List<ChatMessage>();
             Recipient = username;
             Text = username;
@@ -43,6 +45,11 @@ namespace MultiRoomChatClient
                 AppendMessage(msg);
                 RequestManager.SendPrivateMessage(Recipient, msg);
             }
+        }
+
+        private void PrivateMessageForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Parent.PMFormRemove(this);
         }
     }
 }
