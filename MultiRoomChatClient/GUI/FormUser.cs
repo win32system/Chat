@@ -22,6 +22,7 @@ namespace MultiRoomChatClient
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
+            ResponseHandler.Unbanned += () => Invoke(new Action(unBan));
             ResponseHandler.privateMessageReceived += (msg) =>
             {
                 PrivateMessageForm PmForm = new PrivateMessageForm(msg.Sender);
@@ -78,6 +79,12 @@ namespace MultiRoomChatClient
             tb_message.Enabled = false;
             btn_createRoom.Enabled = false;
         }
+        public void unBan()
+        {
+            btn_send.Enabled = true;
+            tb_message.Enabled = true;
+            btn_createRoom.Enabled = true;
+        }
         public delegate void tree_user(string name);
         public event tree_user treename;
         private void tree_Room_MouseDoubleClick(object sender, EventArgs e)
@@ -107,6 +114,7 @@ namespace MultiRoomChatClient
             tabbedMessageList1.CloseAllRooms();
             Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned -= () => Invoke(new Action(Ban));
+            ResponseHandler.Unbanned -= () => Invoke(new Action(unBan));
             RequestManager.Logout();
             Client.Disconnect();
         }
