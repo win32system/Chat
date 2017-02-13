@@ -26,10 +26,20 @@ namespace ChatServer.Roles
         public async Task TrackBlackList(string username)
         {
             DateTime timeLeft = BlackListProvider.GetDateTillBanDiscard(username);
-            TimeSpan taskRunTime = DateTime.Now - timeLeft;
+            TimeSpan taskRunTime = DateTime.Now.Subtract(timeLeft);
+            if(taskRunTime.Ticks>0)
+            {
+                taskRunTime = new TimeSpan(0);
+            }
             await Task.Delay(taskRunTime);
-            client.Role = new User(client);
-            client.SendMessage(ResponseConstructor.GetUnBannedNotification(username));
+            
+            BlackListProvider.RemoveRecord(username);
+            ClientObject user = Manager.FindClient(username);
+            
+            string tmp = ResponseConstructor.GetUnBannedNotification(username);
+            user.SendMessage(tmp);
+            user.Role = new User(user);
+          
         }
     }
 

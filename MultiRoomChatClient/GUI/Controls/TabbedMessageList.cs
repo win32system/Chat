@@ -56,6 +56,8 @@ namespace MultiRoomChatClient
         public void CloseRoom()
         {
             var tab = this.tabControl1.SelectedTab;
+            if (tab == null || tab.ToString() == "")
+                return;
             this.tabControl1.TabPages.Remove(tab);
             RequestManager.LeaveRoom(((RoomObjExt)(tab.Tag)).Name);
             RoomObjExt room = tab.Tag as RoomObjExt;

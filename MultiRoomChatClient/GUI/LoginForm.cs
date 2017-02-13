@@ -56,8 +56,9 @@ namespace MultiRoomChatClient
 
         private void On_LoginBanned(string Username)
         {
-            var chat = On_Log(Username);
-            chat.Ban();
+            //var chat = On_Log(Username);
+            //chat.Ban();
+            On_Log(Username);
         }
         
         private void On_LoginAdmin(string Username)

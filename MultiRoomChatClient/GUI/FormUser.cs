@@ -15,8 +15,8 @@ namespace MultiRoomChatClient
     public partial class SuperDuperChat : Form
     {
         RoomManager Manager;
-        public LinkedList<PrivateMessageForm> PMForms = new LinkedList<PrivateMessageForm>();
 
+        public LinkedList<PrivateMessageForm> PMForms = new LinkedList<PrivateMessageForm>();
         public delegate void tree_user(string name);
         public event tree_user treename;
 
@@ -26,6 +26,7 @@ namespace MultiRoomChatClient
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
+            ResponseHandler.Unbanned += () => Invoke(new Action(unBan));
             ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
         }
 
@@ -104,6 +105,12 @@ namespace MultiRoomChatClient
             tb_message.Enabled = false;
             btn_createRoom.Enabled = false;
         }
+        public void unBan()
+        {
+            btn_send.Enabled = true;
+            tb_message.Enabled = true;
+            btn_createRoom.Enabled = true;
+        }
         
         private void tree_Room_MouseDoubleClick(object sender, EventArgs e)
         {
@@ -117,7 +124,7 @@ namespace MultiRoomChatClient
             }
             else if ((tag is string) && tag.ToString() != Client.Username.ToString())
             {
-                PrivateMessageForm PmForm = new PrivateMessageForm(tag as string, this);
+                PrivateMessageForm PmForm = new PrivateMessageForm(tag as string,this);
                 this.treename?.Invoke(tag.ToString());
                 PmForm.Show();
             }
@@ -132,6 +139,7 @@ namespace MultiRoomChatClient
             tabbedMessageList1.CloseAllRooms();
             Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned -= () => Invoke(new Action(Ban));
+            ResponseHandler.Unbanned -= () => Invoke(new Action(unBan));
             RequestManager.Logout();
             Client.Disconnect();
         }
