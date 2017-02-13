@@ -32,7 +32,6 @@ namespace MultiRoomChatClient
                     return;
                 }
             }
-            //this.tabControl1 = new TabControl();
             TabPage tp = new TabPage(room.Name);
             tp.Tag = room;
             ListBox lb = new ListBox();
@@ -74,6 +73,10 @@ namespace MultiRoomChatClient
         public void SendMessage(string msg)
         {
             var tab = tabControl1.SelectedTab;
+            if( tab == null)
+            {
+                return;
+            }
             RoomObjExt current = (RoomObjExt)tab.Tag;
             current.SendMessage(msg);
         }
