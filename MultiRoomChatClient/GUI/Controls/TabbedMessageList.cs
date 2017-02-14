@@ -32,7 +32,6 @@ namespace MultiRoomChatClient
                     return;
                 }
             }
-            //this.tabControl1 = new TabControl();
             TabPage tp = new TabPage(room.Name);
             tp.Tag = room;
             ListBox lb = new ListBox();

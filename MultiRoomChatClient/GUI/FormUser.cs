@@ -125,6 +125,7 @@ namespace MultiRoomChatClient
             else if ((tag is string) && tag.ToString() != Client.Username.ToString())
             {
                 PrivateMessageForm PmForm = new PrivateMessageForm(tag as string,this);
+                PMForms.AddLast(PmForm);
                 this.treename?.Invoke(tag.ToString());
                 PmForm.Show();
             }
