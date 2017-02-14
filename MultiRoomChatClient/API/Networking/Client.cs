@@ -39,21 +39,21 @@ namespace MultiRoomChatClient
             {
                 return;
             }
-            //try
-            //{
+            try
+            {
                 client.Connect(host, port);
                 stream = client.GetStream();
                 processThread = new Thread(new ThreadStart(Process));
 
                 processThread.Start();
-            //}
-            //catch (Exception ex)
-            //{
-                //Console.WriteLine(ex.Message);
-            //}
+            }
+            catch (Exception ex)
+            {
+               // Console.WriteLine(ex.Message);
+            }
             //finally
             //{
-           //     Disconnect();
+            //    Disconnect();
             //}
         }
         public static void AddRequest(string message)
