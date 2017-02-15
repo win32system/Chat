@@ -42,6 +42,8 @@ namespace MultiRoomChatClient
                 lb.Invoke(new Action(() => {
                     lb.DataSource = null;
                     lb.DataSource = room.Messages;
+                    int visibleItems = lb.ClientSize.Height / lb.ItemHeight;
+                    lb.TopIndex = Math.Max(lb.Items.Count - visibleItems + 1, 0);
                 }));
             };
             room.NotificationUpdated += (x) =>
