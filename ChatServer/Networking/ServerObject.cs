@@ -16,8 +16,8 @@ namespace ChatServer
 
         protected internal void Listen()
         {
-            //try
-            //{
+            try
+            {
                 tcpListener = new TcpListener(IPAddress.Any, 8888);
                 tcpListener.Start();
                 Console.WriteLine("Сервер запущен. Ожидание подключений...");
@@ -32,12 +32,12 @@ namespace ChatServer
                     
                     Console.WriteLine("Connected");//////////////////
                 }
-            //}
-            //catch (Exception ex)
-            //{
+            }
+            catch (Exception ex)
+            {
             //    Console.WriteLine(ex.Message);
-            //    Disconnect();
-            //}
+                Disconnect();
+            }
         }
 
         protected internal void Disconnect()
