@@ -28,8 +28,14 @@ namespace MultiRoomChatClient
         {
             if (login_box.Text == null || login_box.Text == "")
                 return;
-
-            Client.StartClient();
+            try
+            {
+                Client.StartClient();
+            }
+            catch
+            {
+                MessageBox.Show("Server Disconnect");
+            }
             RequestManager.Login(login_box.Text);
         }
         private void On_LoginFailed(string error)

@@ -44,6 +44,7 @@ namespace MultiRoomChatClient
             {
                 AppendMessage(msg);
                 RequestManager.SendPrivateMessage(Recipient, msg);
+                text_msg.Clear();
             }
         }
 

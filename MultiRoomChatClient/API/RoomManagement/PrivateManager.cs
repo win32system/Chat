@@ -9,14 +9,9 @@ namespace MultiRoomChatClient
 {
     public class PrivateManager
     {
-        
-
         public PrivateManager()
         {
             
         }
-        
-
-        
     }
 }

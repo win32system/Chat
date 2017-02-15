@@ -84,6 +84,7 @@
             this.Controls.Add(this.btn_connect);
             this.Controls.Add(this.login_box);
             this.Controls.Add(this.lbl_name);
+            this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Login";
             this.ResumeLayout(false);

@@ -28,10 +28,10 @@ namespace MultiRoomChatClient
         {
             Client.Start("127.0.0.1", 8888);
         }
-        
+      
         static void Start(string host, int port)
         {
-            if(client == null || stream == null)
+            if (client == null || stream == null)
             {
                 client = new TcpClient();
             }
@@ -39,21 +39,20 @@ namespace MultiRoomChatClient
             {
                 return;
             }
-            //try
-            //{
+          
                 client.Connect(host, port);
                 stream = client.GetStream();
                 processThread = new Thread(new ThreadStart(Process));
 
                 processThread.Start();
-            //}
-            //catch (Exception ex)
-            //{
-                //Console.WriteLine(ex.Message);
-            //}
+           
+         
+
+            // Console.WriteLine(ex.Message);
+
             //finally
             //{
-           //     Disconnect();
+            //    Disconnect();
             //}
         }
         public static void AddRequest(string message)
@@ -65,6 +64,7 @@ namespace MultiRoomChatClient
         {
             if (messageQue.Count > 0)
             {
+
                 StreamWriter sw = new StreamWriter(stream);
                 while (messageQue.Count > 0)
                 {
@@ -89,25 +89,27 @@ namespace MultiRoomChatClient
             if(response != null && response.Length > 0)
             responseReceived(response);
         }
-       
+        
         static void Process()
         {
             while (true)
             {
-                //try
-                //{
+                try
+                {
                 ReadStream();
                     
                     WriteStream();
 
-                Thread.Sleep(20);
-                //}
-                //catch
-                //{
+                    Thread.Sleep(20);
+                }
+                catch
+                {
+                    
+                   // Disconnect();
                 //    Console.WriteLine("Подключение прервано!"); //соединение было прервано
                 //    Console.ReadLine();
                 //    Disconnect();
-                //}
+                }
             }
         }
 

@@ -77,10 +77,8 @@ namespace MultiRoomChatClient
         public void SendMessage(string msg)
         {
             var tab = tabControl1.SelectedTab;
-            if( tab == null)
-            {
+            if (tab == null || tab.ToString() == "")
                 return;
-            }
             RoomObjExt current = (RoomObjExt)tab.Tag;
             current.SendMessage(msg);
         }
