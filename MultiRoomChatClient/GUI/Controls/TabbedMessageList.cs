@@ -39,8 +39,10 @@ namespace MultiRoomChatClient
             lb.DataSource = room.Messages;
             room.MessageReceived += (x) => {
                 /////kostyl
-                lb.DataSource = null;
-                lb.DataSource = room.Messages;
+                lb.Invoke(new Action(() => {
+                    lb.DataSource = null;
+                    lb.DataSource = room.Messages;
+                }));
             };
             room.NotificationUpdated += (x) =>
             {
