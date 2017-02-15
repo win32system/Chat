@@ -19,7 +19,7 @@ namespace MultiRoomChatClient
         public LinkedList<PrivateMessageForm> PMForms = new LinkedList<PrivateMessageForm>();
         public delegate void tree_user(string name);
         public event tree_user treename;
-
+      
         public SuperDuperChat()
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace MultiRoomChatClient
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
             ResponseHandler.Unbanned += () => Invoke(new Action(unBan));
-            ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
+            ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);            
         }
 
         public void HandleMessage(ChatMessage msg)
@@ -118,15 +118,15 @@ namespace MultiRoomChatClient
                 return;
 
             var tag = tree_Room.SelectedNode.Tag;
+          
             if (tag is RoomObjExt)
             {
                 tabbedMessageList1.AddRoom(tag as RoomObjExt);
             }
             else if ((tag is string) && tag.ToString() != Client.Username.ToString())
             {
-                PrivateMessageForm PmForm = new PrivateMessageForm(tag as string,this);
+                PrivateMessageForm PmForm = new PrivateMessageForm(tag as string, this);
                 PMForms.AddLast(PmForm);
-                this.treename?.Invoke(tag.ToString());
                 PmForm.Show();
             }
         }
@@ -138,13 +138,30 @@ namespace MultiRoomChatClient
         private void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
         {
             tabbedMessageList1.CloseAllRooms();
-            Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
-            ResponseHandler.Banned -= () => Invoke(new Action(Ban));
+            
+            Manager.RoomDataUpdated  -= () => Invoke(new Action(onRoomDataUpdated));
+            ResponseHandler.Banned   -= () => Invoke(new Action(Ban));
             ResponseHandler.Unbanned -= () => Invoke(new Action(unBan));
             RequestManager.Logout();
             Client.Disconnect();
         }
 
-       
+        private void tree_Room_Click(object sender, EventArgs e)
+        {
+            if (tree_Room.SelectedNode == null)
+                return;
+
+            var tag = tree_Room.SelectedNode.Tag;
+            if ((tag is string) && tag.ToString() != Client.Username.ToString())
+            {
+                this.treename?.Invoke(tag.ToString());
+            }
+        }
+
+        private void SuperDuperChat_Load(object sender, EventArgs e)
+        {
+            StatusName.Text = "Connection. Name: " + Client.Username.ToString();
+            
+        }
     }
 }

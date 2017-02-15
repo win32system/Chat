@@ -67,6 +67,7 @@
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.text_msg);
             this.Controls.Add(this.list_msg);
+            this.MaximizeBox = false;
             this.Name = "PrivateMessageForm";
             this.Text = "PrivateMessageForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PrivateMessageForm_FormClosed);

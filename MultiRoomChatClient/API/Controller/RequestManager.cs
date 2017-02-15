@@ -79,7 +79,6 @@ namespace MultiRoomChatClient
                 return;
 
             RequestObject message = new RequestObject("admin", "ban", new object[] { userName, exp });
-
             Client.AddRequest(JsonConvert.SerializeObject(message));
         }
 
