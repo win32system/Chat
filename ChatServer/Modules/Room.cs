@@ -18,11 +18,27 @@ namespace ChatServer
 
             if(request.Cmd == "create")
             {
-                Manager.CreateRoom((string)request.args);
+                var room  = Manager.FindRoom((string)request.args);
+                if(room != null)
+                {
+                    client.SendMessage(ResponseConstructor.GetErrorNotification("This room already exists", "room"));
+                }
+                else
+                {
+                    Manager.CreateRoom((string)request.args);
+                }
             }
             else if (request.Cmd == "close")
             {
-                Manager.CloseRoom((string)request.args);
+                var room = Manager.FindRoom((string)request.args);
+                if (room == null)
+                {
+                    client.SendMessage(ResponseConstructor.GetErrorNotification("Can't delete this room as it already exists", "room"));
+                }
+                else
+                {
+                    Manager.CloseRoom((string)request.args);
+                }
             }
             return true;
         }

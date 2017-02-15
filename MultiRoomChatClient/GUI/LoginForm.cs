@@ -18,8 +18,8 @@ namespace MultiRoomChatClient
             InitializeComponent();
             ResponseHandler.loginSuccessfull += (x) => Invoke(new Action<string>(On_LoginSuccessfull), x);
             ResponseHandler.loggedAsAdmin    += (x) => Invoke(new Action<string>(On_LoginAdmin), x);
-            ResponseHandler.loggedBanned     += (x) => Invoke(new Action<string>(On_LoginBanned), x) ;
-            ResponseHandler.loginFail        += (x) => Invoke(new Action(On_LoginFailed));
+            ResponseHandler.loggedBanned     += (x) => Invoke(new Action<string>(On_LoginBanned), x);
+            ResponseHandler.loginFail        += (x) => Invoke(new Action<string>(On_LoginFailed), x);
         }
 
         public LinkedList<PrivateMessageForm> PmForms = new LinkedList<PrivateMessageForm>();
@@ -38,9 +38,10 @@ namespace MultiRoomChatClient
             }
             RequestManager.Login(login_box.Text);
         }
-        private void On_LoginFailed()
+        private void On_LoginFailed(string error)
         {
             login_box.BackColor = Color.Coral;
+            MessageBox.Show(error);
         }
         
         private SuperDuperChat On_Log(string UserName)
@@ -73,7 +74,6 @@ namespace MultiRoomChatClient
             var chat = new AdminForm();
             chat.Location = Location;
             chat.StartPosition = StartPosition;
-            chat.FormClosing += (x, y) => this.Show();
             chat.Show();
             this.Hide();
         }

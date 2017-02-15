@@ -18,6 +18,14 @@ namespace ChatServer
             }
 
             string username = (string)request.args;
+
+            if(Manager.FindClient(username) != null)
+            {
+                client.SendMessage(ResponseConstructor.GetErrorNotification("User with this username already exists", "login"));
+                return true;
+            }
+
+
             client.Username = username;
             if (IsAdmin(username))
             {

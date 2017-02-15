@@ -97,7 +97,9 @@ namespace MultiRoomChatClient
                         case "removed":
                             roomRemoved?.Invoke((string)req.args);
                             break;
-                        default: break;
+                        default:
+                            roomError?.Invoke((string)req.args);
+                            break;
                     }
                     break;
             }
@@ -133,5 +135,6 @@ namespace MultiRoomChatClient
         public delegate void roomDelegate(string roomName);
         public static event roomDelegate roomCreated;
         public static event roomDelegate roomRemoved;
+        public static event roomDelegate roomError;
     }
 }
