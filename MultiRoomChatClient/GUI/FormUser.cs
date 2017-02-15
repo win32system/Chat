@@ -141,7 +141,7 @@ namespace MultiRoomChatClient
             tabbedMessageList1.CloseRoom();
         }
 
-        private void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
+        protected void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
         {
             tabbedMessageList1.CloseAllRooms();
             Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));

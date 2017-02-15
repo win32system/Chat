@@ -68,7 +68,6 @@ namespace MultiRoomChatClient
             var chat = new AdminForm();
             chat.Location = Location;
             chat.StartPosition = StartPosition;
-            chat.FormClosing += (x, y) => this.Show();
             chat.Show();
             this.Hide();
         }
