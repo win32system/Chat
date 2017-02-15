@@ -28,6 +28,7 @@ namespace MultiRoomChatClient
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
             ResponseHandler.Unbanned += () => Invoke(new Action(unBan));
             ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
+            ResponseHandler.roomError += (x) => Invoke(new Action<string>(OnRoomError), x);
         }
 
         public void HandleMessage(ChatMessage msg)
@@ -74,6 +75,11 @@ namespace MultiRoomChatClient
                 TreeNode roomNode = RoomToTreeNode(room);
                 tree_Room.Nodes.Add(roomNode);
             }
+        }
+
+        private void OnRoomError(string error)
+        {
+            MessageBox.Show(error);
         }
 
         private TreeNode RoomToTreeNode(RoomObjExt room)

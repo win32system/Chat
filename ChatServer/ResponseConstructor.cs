@@ -53,5 +53,10 @@ namespace ChatServer
         {
             return JsonConvert.SerializeObject(new RequestObject("room", "closed", room));
         }
+
+        internal static string GetErrorNotification(string text, string module)
+        {
+            return JsonConvert.SerializeObject(new RequestObject(module, "error", text));
+        }
     }
 }
