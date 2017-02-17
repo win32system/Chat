@@ -34,6 +34,13 @@ namespace MultiRoomChatClient
         {
             list_msg.Items.Add(msg);
             Client.PrivateHistory.AppendMessage(Client.Username + @"-" + Recipient, msg);
+            ScrollDown();
+        }
+
+        private void ScrollDown()
+        {
+            int visibleItems = list_msg.ClientSize.Height / list_msg.ItemHeight;
+            list_msg.TopIndex = Math.Max(list_msg.Items.Count - visibleItems + 1, 0);
         }
 
         private void btn_send_Click(object sender, EventArgs e)
