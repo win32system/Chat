@@ -78,9 +78,16 @@ namespace ChatServer
             {
                 return;
             }
-            StreamWriter sw = new StreamWriter(Stream);
-            sw.WriteLine(message + '\n');
-            sw?.Flush();
+            try
+            {
+                StreamWriter sw = new StreamWriter(Stream);
+                sw.WriteLine(message + '\n');
+                sw?.Flush();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             Console.WriteLine(this.Username + ": " + message);
         }
 

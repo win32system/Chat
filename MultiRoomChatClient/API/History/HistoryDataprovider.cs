@@ -22,7 +22,8 @@ namespace MultiRoomChatClient
         public void AppendMessage(string room, ChatMessage message)
         {
            
-                File.AppendAllLines(folder + room, new string[] { JsonConvert.SerializeObject(message) });
+                FileAppend(folder + room, new string[] { JsonConvert.SerializeObject(message) });
+           
         }
 
         public void AppendSequence(string room, ChatMessage[] messages)
@@ -51,7 +52,18 @@ namespace MultiRoomChatClient
                 text[j] = JsonConvert.SerializeObject(messages[j]);
             }
 
-            File.AppendAllLines(folder + room, text);
+            FileAppend(folder + room, text);
+        }
+        private void FileAppend(string room, string[] text)
+        {
+            try
+            {
+                File.AppendAllLines(room, text);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public ChatMessage[] GetHistory(string roomName, ChatMessage last = null)

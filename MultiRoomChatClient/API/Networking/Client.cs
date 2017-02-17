@@ -94,22 +94,22 @@ namespace MultiRoomChatClient
         {
             while (true)
             {
-              //  try
-              //  {
+                try
+                {
                 ReadStream();
                     
                     WriteStream();
 
                     Thread.Sleep(20);
-             //   }
-             //   catch
-            //    {
+                }
+                catch
+                {
                     
                    // Disconnect();
                 //    Console.WriteLine("Подключение прервано!"); //соединение было прервано
                 //    Console.ReadLine();
                 //    Disconnect();
-            //    }
+                }
             }
         }
 

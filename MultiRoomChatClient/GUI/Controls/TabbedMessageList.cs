@@ -38,6 +38,7 @@ namespace MultiRoomChatClient
             TabPage tp = new TabPage(room.Name);
             tp.Tag = room;
             ListBox lb = new ListBox();
+            
             lb.Dock = DockStyle.Fill;
             lb.DataSource = room.Messages;
             room.MessageReceived += (x) => {
@@ -47,6 +48,7 @@ namespace MultiRoomChatClient
                     lb.DataSource = room.Messages;
                     int visibleItems = lb.ClientSize.Height / lb.ItemHeight;
                     lb.TopIndex = Math.Max(lb.Items.Count - visibleItems + 1, 0);
+                    
                     //tp.Text += room.Name1;
                 }));
             };

@@ -17,6 +17,7 @@ namespace MultiRoomChatClient
 
         public static void ProcessResponse(string Json)
         {
+            
             //Console.WriteLine(Json); 
             RequestObject req = JsonConvert.DeserializeObject<RequestObject>(Json);
 
