@@ -69,7 +69,9 @@
             // 
             resources.ApplyResources(this.tb_newRoom, "tb_newRoom");
             this.tb_newRoom.Name = "tb_newRoom";
+            this.tb_newRoom.Click += new System.EventHandler(this.tb_newRoom_Click);
             this.tb_newRoom.Enter += new System.EventHandler(this.tb_newRoom_Enter);
+            this.tb_newRoom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_newRoom_KeyPress);
             // 
             // btn_closeRoom
             // 
@@ -115,12 +117,12 @@
 
         public System.Windows.Forms.TreeView tree_Room;
         private System.Windows.Forms.Button btn_createRoom;
-        private System.Windows.Forms.Button btn_send;
         private System.Windows.Forms.TextBox tb_message;
         private System.Windows.Forms.TextBox tb_newRoom;
         private System.Windows.Forms.Button btn_closeRoom;
         private TabbedMessageList tabbedMessageList1;
         private System.Windows.Forms.Label StatusName;
+        private System.Windows.Forms.Button btn_send;
     }
 }
 

@@ -143,6 +143,7 @@ namespace MultiRoomChatClient
             if (tag is RoomObjExt)
             {
                 tabbedMessageList1.AddRoom(tag as RoomObjExt);
+                
             }
             else if ((tag is string) && tag.ToString() != Client.Username.ToString()) //&& btn_send.Enabled==true)
             {
@@ -185,7 +186,27 @@ namespace MultiRoomChatClient
 
         private void tb_newRoom_Enter(object sender, EventArgs e)
         {
+         
+          // btn_createRoom.SelectNextControl(null,false,false,false,false);
+        }
+
+        private void tb_newRoom_Click(object sender, EventArgs e)
+        {
            // btn_createRoom.Select();
+            //tb_newRoom.Select();
+        }
+
+        private void tb_newRoom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                return;
+            }
+            if (Char.IsWhiteSpace(e.KeyChar) || Char.IsSymbol(e.KeyChar) || Char.IsSeparator(e.KeyChar) || Char.IsPunctuation(e.KeyChar) || tb_newRoom.Text.Length >= 40)
+            {
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

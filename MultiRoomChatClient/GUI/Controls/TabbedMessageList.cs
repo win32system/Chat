@@ -47,17 +47,19 @@ namespace MultiRoomChatClient
                     lb.DataSource = room.Messages;
                     int visibleItems = lb.ClientSize.Height / lb.ItemHeight;
                     lb.TopIndex = Math.Max(lb.Items.Count - visibleItems + 1, 0);
+                    //tp.Text += room.Name1;
                 }));
             };
             room.NotificationUpdated += (x) =>
             {
                 tp.Text = x > 0 ? room.Name : room.Name + " (" + x + ")";
             };
+            tabControl1.SelectedTab = tp;
             tp.Controls.Add(lb);
+         
             room.Bind();
             room.SetActive();
             this.tabControl1.TabPages.Add(tp);
-
         }
 
         public void CloseRoom()
