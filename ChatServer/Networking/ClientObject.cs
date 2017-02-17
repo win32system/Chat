@@ -80,7 +80,7 @@ namespace ChatServer
             }
             StreamWriter sw = new StreamWriter(Stream);
             sw.WriteLine(message + '\n');
-            sw.Flush();
+            sw?.Flush();
             Console.WriteLine(this.Username + ": " + message);
         }
 

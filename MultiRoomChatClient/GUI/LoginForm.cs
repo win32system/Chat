@@ -27,7 +27,11 @@ namespace MultiRoomChatClient
         private void btn_connect_Click(object sender, EventArgs e)
         {
             if (login_box.Text == null || login_box.Text == "")
+            {
+                MessageBox.Show("Enter name");
+                login_box.Focus();
                 return;
+            }
             try
             {
                 Client.StartClient();

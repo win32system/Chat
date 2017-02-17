@@ -20,7 +20,7 @@ namespace ChatServer
 
         public static void AppendMessage(string roomName, ChatMessage message)
         {
-            File.AppendAllLines(Folder + roomName, new string[] { JsonConvert.SerializeObject(message) });
+            File.AppendAllLines(Folder + roomName, new string[] {JsonConvert.SerializeObject(message)});
         }
 
         public static ChatMessage[] GetHistory(string roomName)

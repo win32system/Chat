@@ -10,20 +10,17 @@ using System.Windows.Forms;
 
 namespace MultiRoomChatClient
 {
-    public partial class AdminForm : SuperDuperChat
+    public partial class AdminForm :SuperDuperChat
     {
-        public AdminForm() : base()
+        public AdminForm() :base()
         {
             InitializeComponent();
             this.MaximizeBox = false;
-            this.treename += (x) => 
+            this.treename += (x) =>
                 tb_selectedUser.Invoke(new Action(() =>
-                {
+                { 
                     tb_selectedUser.Text = x;
                 }));
-
-            //lb.Invoke(new Action(() =>
-
         }
         private void btn_banForever_Click(object sender, EventArgs e)
         {

@@ -41,7 +41,7 @@ namespace ChatServer
                 return;
 
             user.SendMessage(ResponseConstructor.GetBannedNotification(duration));
-            user.Role = new BannedUser(user);
+            //user.Role = new BannedUser(user);
         }
 
         private void UnBanUser(string username)
@@ -52,9 +52,8 @@ namespace ChatServer
             if (user == null || user.ToString() == "")
                 return;
 
-            string tmp = ResponseConstructor.GetUnBannedNotification(username);
-            user.SendMessage(tmp);
-            user.Role = new User(user);
+            user.SendMessage(ResponseConstructor.GetUnBannedNotification(username));
+         //   user.Role = new User(user);
         }
     }
 }

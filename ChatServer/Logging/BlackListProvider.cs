@@ -42,15 +42,15 @@ namespace ChatServer
 
         public static void RemoveRecord(string Username)
         {
-            LinkedList<BlackListRecord> records = GetBanList();
-            foreach(BlackListRecord r in records)
+            LinkedList<BlackListRecord> tmp = new LinkedList<BlackListRecord>();
+            foreach (BlackListRecord r in GetBanList())
             {
-                if(r.Username == Username)
+                if (r.Username != Username)
                 {
-                    records.Remove(r);
+                    tmp.AddLast(r);
                 }
             }
-            SetBlackList(records);
+            SetBlackList(tmp);
         }
 
         public static DateTime GetDateTillBanDiscard(string username)
