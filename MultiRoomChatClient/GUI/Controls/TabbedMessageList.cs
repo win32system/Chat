@@ -16,7 +16,10 @@ namespace MultiRoomChatClient
         {
             InitializeComponent();
         }
-      
+      public int getCountRoom()
+        {
+            return this.tabControl1.TabPages.Count;
+        }
         public void SelectActive(RoomObjExt room)
         {
             var tab = this.tabControl1.SelectedTab;

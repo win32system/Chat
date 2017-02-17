@@ -172,7 +172,7 @@
     <value>NoControl</value>
   </data>
   <data name="btn_send.Location" type="System.Drawing.Point, System.Drawing">
-    <value>282, 250</value>
+    <value>282, 252</value>
   </data>
   <data name="btn_send.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>

@@ -69,6 +69,7 @@
             // 
             resources.ApplyResources(this.tb_newRoom, "tb_newRoom");
             this.tb_newRoom.Name = "tb_newRoom";
+            this.tb_newRoom.Enter += new System.EventHandler(this.tb_newRoom_Enter);
             // 
             // btn_closeRoom
             // 

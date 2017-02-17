@@ -60,6 +60,14 @@ namespace MultiRoomChatClient
 
         private void btn_send_Click(object sender, EventArgs e)
         {
+            
+     
+          //  Nodes.Cast<TreeNode>().ToArray()
+            if (tabbedMessageList1.getCountRoom() == 0)
+            {
+                MessageBox.Show("Enter room");
+                return;
+            }
             string msg = tb_message.Text;
             if(msg.Length > 0)
             {
@@ -136,7 +144,7 @@ namespace MultiRoomChatClient
             {
                 tabbedMessageList1.AddRoom(tag as RoomObjExt);
             }
-            else if ((tag is string) && tag.ToString() != Client.Username.ToString())
+            else if ((tag is string) && tag.ToString() != Client.Username.ToString()) //&& btn_send.Enabled==true)
             {
                 PrivateMessageForm PmForm = new PrivateMessageForm(tag as string, this);
                 PMForms.AddLast(PmForm);
@@ -173,6 +181,11 @@ namespace MultiRoomChatClient
 
         private void SuperDuperChat_Load(object sender, EventArgs e)
         {
+        }
+
+        private void tb_newRoom_Enter(object sender, EventArgs e)
+        {
+           // btn_createRoom.Select();
         }
     }
 }

@@ -51,6 +51,7 @@
             this.login_box.Name = "login_box";
             this.login_box.Size = new System.Drawing.Size(199, 31);
             this.login_box.TabIndex = 1;
+            this.login_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.login_box_KeyPress);
             // 
             // btn_connect
             // 

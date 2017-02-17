@@ -71,7 +71,7 @@ namespace MultiRoomChatClient
                     string message = messageQue.First.Value;
 
                     sw.WriteLine(message);
-                    sw.Flush();
+                    sw?.Flush();
 
                     messageQue.RemoveFirst();
                 }
