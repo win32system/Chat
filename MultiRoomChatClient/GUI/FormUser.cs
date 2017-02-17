@@ -23,6 +23,7 @@ namespace MultiRoomChatClient
         public SuperDuperChat()
         {
             InitializeComponent();
+            this.Text += "   Name: " + Client.Username.ToString();
             Manager = new RoomManager();
             Manager.RoomDataUpdated += () => Invoke(new Action(onRoomDataUpdated));
             ResponseHandler.Banned += () => Invoke(new Action(Ban));
@@ -96,6 +97,14 @@ namespace MultiRoomChatClient
         private void btn_createRoom_Click(object sender, EventArgs e)
         {
             string newRoom = tb_newRoom.Text;
+            foreach (var room in tree_Room.Nodes.Cast<TreeNode>().ToArray())
+            {
+                if (newRoom == room.Text)
+                {
+                    MessageBox.Show("Room already exists");
+                    return;
+                }
+            }
             if (newRoom.Length > 0)
             {
                 Manager.CreateRoom(newRoom);
@@ -164,8 +173,6 @@ namespace MultiRoomChatClient
 
         private void SuperDuperChat_Load(object sender, EventArgs e)
         {
-            StatusName.Text = "Connection. Name: " + Client.Username.ToString();
-            
         }
     }
 }

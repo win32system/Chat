@@ -20,6 +20,7 @@ namespace MultiRoomChatClient
             ResponseHandler.loggedAsAdmin    += (x) => Invoke(new Action<string>(On_LoginAdmin), x);
             ResponseHandler.loggedBanned     += (x) => Invoke(new Action<string>(On_LoginBanned), x);
             ResponseHandler.loginFail        += (x) => Invoke(new Action<string>(On_LoginFailed), x);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         public LinkedList<PrivateMessageForm> PmForms = new LinkedList<PrivateMessageForm>();

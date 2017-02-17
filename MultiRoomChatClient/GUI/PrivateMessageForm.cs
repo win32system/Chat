@@ -28,6 +28,7 @@ namespace MultiRoomChatClient
             {
                 Messages.AddRange(h);
             }
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         public void AppendMessage(ChatMessage msg)

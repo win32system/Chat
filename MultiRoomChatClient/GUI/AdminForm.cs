@@ -21,6 +21,7 @@ namespace MultiRoomChatClient
                 { 
                     tb_selectedUser.Text = x;
                 }));
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
         private void btn_banForever_Click(object sender, EventArgs e)
         {

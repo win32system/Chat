@@ -100,6 +100,7 @@
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.btn_createRoom);
             this.Controls.Add(this.tree_Room);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "SuperDuperChat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SuperDuperChat_FormClosing);
