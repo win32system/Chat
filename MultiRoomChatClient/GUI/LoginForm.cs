@@ -90,8 +90,11 @@ namespace MultiRoomChatClient
 
         private void login_box_KeyPress(object sender, KeyPressEventArgs e)
         {
-           
-            if (Char.IsWhiteSpace(e.KeyChar) || Char.IsSymbol(e.KeyChar) || Char.IsSeparator(e.KeyChar) || Char.IsPunctuation(e.KeyChar) || login_box.Text.Length>=40)
+            if(e.KeyChar == (char)Keys.Back)
+            {
+                return;
+            }
+            if (Char.IsWhiteSpace(e.KeyChar) || Char.IsSymbol(e.KeyChar) || Char.IsSeparator(e.KeyChar) || Char.IsPunctuation(e.KeyChar) || login_box.Text.Length>=40 )
             {
                 e.Handled = true;
                 return;
