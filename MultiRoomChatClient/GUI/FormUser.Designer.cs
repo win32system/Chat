@@ -35,7 +35,6 @@
             this.tb_message = new System.Windows.Forms.TextBox();
             this.tb_newRoom = new System.Windows.Forms.TextBox();
             this.btn_closeRoom = new System.Windows.Forms.Button();
-            this.StatusName = new System.Windows.Forms.Label();
             this.tabbedMessageList1 = new MultiRoomChatClient.TabbedMessageList();
             this.SuspendLayout();
             // 
@@ -78,11 +77,6 @@
             this.btn_closeRoom.UseVisualStyleBackColor = true;
             this.btn_closeRoom.Click += new System.EventHandler(this.btn_closeRoom_Click);
             // 
-            // StatusName
-            // 
-            resources.ApplyResources(this.StatusName, "StatusName");
-            this.StatusName.Name = "StatusName";
-            // 
             // tabbedMessageList1
             // 
             resources.ApplyResources(this.tabbedMessageList1, "tabbedMessageList1");
@@ -93,7 +87,6 @@
             this.AcceptButton = this.btn_send;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.StatusName);
             this.Controls.Add(this.tabbedMessageList1);
             this.Controls.Add(this.btn_closeRoom);
             this.Controls.Add(this.tb_newRoom);
@@ -118,7 +111,6 @@
         private System.Windows.Forms.TextBox tb_newRoom;
         private System.Windows.Forms.Button btn_closeRoom;
         private TabbedMessageList tabbedMessageList1;
-        private System.Windows.Forms.Label StatusName;
         private System.Windows.Forms.Button btn_send;
     }
 }

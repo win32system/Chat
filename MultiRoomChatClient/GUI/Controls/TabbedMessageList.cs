@@ -40,7 +40,9 @@ namespace MultiRoomChatClient
             ListBox lb = new ListBox();
             
             lb.Dock = DockStyle.Fill;
+            lb.HorizontalScrollbar = true;
             lb.DataSource = room.Messages;
+            //lb.SelectionMode = SelectionMode.MultiSimple;
             room.MessageReceived += (x) => {
                 /////kostyl
                 lb.Invoke(new Action(() => {

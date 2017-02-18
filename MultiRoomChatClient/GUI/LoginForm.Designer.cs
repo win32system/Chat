@@ -61,7 +61,7 @@
             this.btn_connect.Location = new System.Drawing.Point(37, 104);
             this.btn_connect.Name = "btn_connect";
             this.btn_connect.Size = new System.Drawing.Size(128, 27);
-            this.btn_connect.TabIndex = 2;
+            this.btn_connect.TabIndex = 3;
             this.btn_connect.Text = "Connect";
             this.btn_connect.UseVisualStyleBackColor = true;
             this.btn_connect.Click += new System.EventHandler(this.btn_connect_Click);
@@ -72,7 +72,7 @@
             this.btn_exit.Location = new System.Drawing.Point(183, 104);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(128, 27);
-            this.btn_exit.TabIndex = 3;
+            this.btn_exit.TabIndex = 4;
             this.btn_exit.Text = "Exit";
             this.btn_exit.UseVisualStyleBackColor = true;
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
@@ -84,7 +84,7 @@
             this.password_box.Name = "password_box";
             this.password_box.PasswordChar = '*';
             this.password_box.Size = new System.Drawing.Size(199, 31);
-            this.password_box.TabIndex = 5;
+            this.password_box.TabIndex = 2;
             // 
             // label1
             // 
