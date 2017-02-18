@@ -12,17 +12,21 @@ namespace MultiRoomChatClient
 {
     public partial class TabbedMessageList : UserControl
     {
+        public delegate void  roomname(string name);
+        public static event roomname roomName;
         public TabbedMessageList()
         {
             InitializeComponent();
         }
-      public int getCountRoom()
+        public int getCountRoom()
         {
             return this.tabControl1.TabPages.Count;
         }
+        
         public void SelectActive(RoomObjExt room)
         {
             var tab = this.tabControl1.SelectedTab;
+            roomName(tab.Text.ToString());
             (tab.Tag as RoomObjExt).SetActive();
         }
 

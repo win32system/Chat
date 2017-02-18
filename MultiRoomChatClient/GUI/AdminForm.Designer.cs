@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_unban = new System.Windows.Forms.Button();
             this.btn_banForever = new System.Windows.Forms.Button();
             this.dateTime = new System.Windows.Forms.DateTimePicker();
             this.Ban_Till = new System.Windows.Forms.Button();
@@ -41,13 +41,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(505, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Unban";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Unban_Click);
+            this.btn_unban.Location = new System.Drawing.Point(505, 39);
+            this.btn_unban.Name = "btn_unban";
+            this.btn_unban.Size = new System.Drawing.Size(104, 23);
+            this.btn_unban.TabIndex = 7;
+            this.btn_unban.Text = "Unban";
+            this.btn_unban.UseVisualStyleBackColor = true;
+            this.btn_unban.Click += new System.EventHandler(this.Unban_Click);
             // 
             // btn_banForever
             // 
@@ -94,11 +94,11 @@
             this.Controls.Add(this.Ban_Till);
             this.Controls.Add(this.dateTime);
             this.Controls.Add(this.btn_banForever);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_unban);
             this.Name = "AdminForm";
             this.Text = "AdminForm";
             this.Controls.SetChildIndex(this.tree_Room, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.btn_unban, 0);
             this.Controls.SetChildIndex(this.btn_banForever, 0);
             this.Controls.SetChildIndex(this.dateTime, 0);
             this.Controls.SetChildIndex(this.Ban_Till, 0);
@@ -110,7 +110,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_unban;
         private System.Windows.Forms.Button btn_banForever;
         private System.Windows.Forms.DateTimePicker dateTime;
         private System.Windows.Forms.Button Ban_Till;

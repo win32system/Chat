@@ -41,7 +41,7 @@ namespace MultiRoomChatClient
             if (active)
             {
                 MessageReceived?.Invoke(msg);
-             //   NotificationUpdated?.Invoke(1);
+          
             }
         }
 
@@ -54,10 +54,22 @@ namespace MultiRoomChatClient
             Messages.Add(msg);
             Client.RoomHistory.AppendMessage(Name, msg);
 
-          //  if ( active)
+            //if ( active)
            // {    
-                MessageReceived?.Invoke(msg);
-               // NotificationUpdated?.Invoke(Notifications); 
+            MessageReceived?.Invoke(msg);
+
+            //TabbedMessageList.roomName += (x) =>
+            //{
+            //    if (x != room)
+            //    {
+            //        Notifications++;
+            //        NotificationUpdated?.Invoke(Notifications);
+            //    }
+            //};
+
+            
+              //  
+            
             //}
             //else
             //{
