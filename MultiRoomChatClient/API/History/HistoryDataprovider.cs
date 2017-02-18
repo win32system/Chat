@@ -48,7 +48,7 @@ namespace MultiRoomChatClient
             string[] text = new string[history.Count];
             for(int j = 0; j< text.Length-1; j++)
             {
-                    text[j] = JsonConvert.SerializeObject(messages[j]);
+                 text[j] = JsonConvert.SerializeObject(messages[j]);
             }
             FileAppend(folder + room, text);
         }

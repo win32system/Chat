@@ -54,16 +54,16 @@ namespace MultiRoomChatClient
             Messages.Add(msg);
             Client.RoomHistory.AppendMessage(Name, msg);
 
-            if ( active)
-            {    
+          //  if ( active)
+           // {    
                 MessageReceived?.Invoke(msg);
-                NotificationUpdated?.Invoke(Notifications); 
-            }
-            else
-            {
-                 Notifications++;
-                 NotificationUpdated?.Invoke(Notifications);
-             }
+               // NotificationUpdated?.Invoke(Notifications); 
+            //}
+            //else
+            //{
+            //     Notifications++;
+            //     NotificationUpdated?.Invoke(Notifications);
+            // }
         }
 
         public void SetActive()
