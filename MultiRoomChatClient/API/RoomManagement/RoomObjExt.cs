@@ -41,6 +41,7 @@ namespace MultiRoomChatClient
             if (active)
             {
                 MessageReceived?.Invoke(msg);
+             //   NotificationUpdated?.Invoke(1);
             }
         }
 
@@ -52,15 +53,17 @@ namespace MultiRoomChatClient
             }
             Messages.Add(msg);
             Client.RoomHistory.AppendMessage(Name, msg);
-            //if (active)
-            //{
+
+            if ( active)
+            {    
                 MessageReceived?.Invoke(msg);
-            //}
-            //else
-            //{
-           //     Notifications++;
-           //     NotificationUpdated?.Invoke(Notifications);
-           // }
+                NotificationUpdated?.Invoke(Notifications); 
+            }
+            else
+            {
+                 Notifications++;
+                 NotificationUpdated?.Invoke(Notifications);
+             }
         }
 
         public void SetActive()
@@ -88,6 +91,7 @@ namespace MultiRoomChatClient
             active = false;
             Notifications = 0;
         }
+       
 
         private void HandleMessage(string room, ChatMessage msg)
         {

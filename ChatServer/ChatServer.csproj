@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\BlackListProvider.cs" />
+    <Compile Include="Logging\AuthProvider.cs" />
     <Compile Include="Modules\AdminModule.cs" />
     <Compile Include="Modules\IHandlerModule.cs" />
     <Compile Include="Modules\Info.cs" />

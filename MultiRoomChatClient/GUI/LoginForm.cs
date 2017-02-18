@@ -33,6 +33,12 @@ namespace MultiRoomChatClient
                 login_box.Focus();
                 return;
             }
+            else if (password_box.Text == null || password_box.Text == "")
+            {
+                MessageBox.Show("Enter password");
+                password_box.Focus();
+                return;
+            }
             try
             {
                 Client.StartClient();
@@ -41,11 +47,12 @@ namespace MultiRoomChatClient
             {
                 MessageBox.Show("Server Disconnect");
             }
-            RequestManager.Login(login_box.Text);
+            RequestManager.Login(login_box.Text,password_box.Text);
         }
         private void On_LoginFailed(string error)
         {
             login_box.BackColor = Color.Coral;
+            password_box.BackColor = Color.Coral;
             MessageBox.Show(error);
         }
         
@@ -99,6 +106,11 @@ namespace MultiRoomChatClient
                 e.Handled = true;
                 return;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

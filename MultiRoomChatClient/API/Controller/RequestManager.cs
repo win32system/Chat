@@ -11,9 +11,9 @@ namespace MultiRoomChatClient
     public static class RequestManager
     {
         
-        public static void Login(string name)
+        public static void Login(string name,string password)
         {
-            Client.AddRequest(JsonConvert.SerializeObject(new RequestObject("login", "in", name)));
+            Client.AddRequest(JsonConvert.SerializeObject(new RequestObject("login", "in", new object[] { name, password })));
         }
 
         public static void Logout(string name)

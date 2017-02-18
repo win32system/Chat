@@ -30,7 +30,7 @@ namespace MultiRoomChatClient
             ResponseHandler.Unbanned += () => Invoke(new Action(unBan));
             ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
             ResponseHandler.roomError += (x) => Invoke(new Action<string>(OnRoomError), x);
-          
+            
             //btn_createRoom.Focus +=()=>Invoke*
         }
 
@@ -83,6 +83,7 @@ namespace MultiRoomChatClient
                 TreeNode roomNode = RoomToTreeNode(room);
                 tree_Room.Nodes.Add(roomNode);
             }
+
         }
         private void OnRoomError(string error)
         {
@@ -142,7 +143,6 @@ namespace MultiRoomChatClient
             if (tag is RoomObjExt)
             {
                 tabbedMessageList1.AddRoom(tag as RoomObjExt);
-                
             }
             else if ((tag is string) && tag.ToString() != Client.Username.ToString()) 
             {
@@ -181,21 +181,6 @@ namespace MultiRoomChatClient
                 this.treename?.Invoke(tag.ToString());
             }
         }
-
-        private void SuperDuperChat_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void tb_newRoom_Enter(object sender, EventArgs e)
-        {
-       
-        }
-
-        private void tb_newRoom_Click(object sender, EventArgs e)
-        {
-          
-        }
-
         private void tb_newRoom_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Back)

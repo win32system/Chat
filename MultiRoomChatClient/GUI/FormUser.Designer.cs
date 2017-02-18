@@ -69,8 +69,6 @@
             // 
             resources.ApplyResources(this.tb_newRoom, "tb_newRoom");
             this.tb_newRoom.Name = "tb_newRoom";
-            this.tb_newRoom.Click += new System.EventHandler(this.tb_newRoom_Click);
-            this.tb_newRoom.Enter += new System.EventHandler(this.tb_newRoom_Enter);
             this.tb_newRoom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_newRoom_KeyPress);
             // 
             // btn_closeRoom
@@ -107,7 +105,6 @@
             this.MaximizeBox = false;
             this.Name = "SuperDuperChat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SuperDuperChat_FormClosing);
-            this.Load += new System.EventHandler(this.SuperDuperChat_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

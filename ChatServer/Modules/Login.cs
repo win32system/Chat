@@ -1,5 +1,6 @@
 ﻿using ChatServer.Roles;
 using Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,27 @@ namespace ChatServer
                 return false;
             }
 
-            string username = (string)request.args;
+            object[] user = JsonConvert.DeserializeObject<object[]>(request.args.ToString());
+            string username = user[0].ToString();
+            string password = user[1].ToString();
+            // (string)request.args;
 
-            if(Manager.FindClient(username) != null)
+            if (Manager.FindClient(username) != null)
             {
                 client.SendMessage(ResponseConstructor.GetErrorNotification("User with this username already exists", "login"));
                 return true;
             }
-
-
+            string answer = AuthProvider.RecordExists(username, password);
+            if (answer=="false")
+            {
+                AuthProvider.AppendRecord(username, password);
+            }
+            else if(answer == "login")
+            {
+                client.SendMessage(ResponseConstructor.GetErrorNotification("The password is not corrent", "login"));
+                return true;
+            }
+           
             client.Username = username;
             if (IsAdmin(username))
             {

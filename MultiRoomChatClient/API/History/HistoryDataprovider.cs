@@ -21,37 +21,35 @@ namespace MultiRoomChatClient
 
         public void AppendMessage(string room, ChatMessage message)
         {
-           
-                FileAppend(folder + room, new string[] { JsonConvert.SerializeObject(message) });
-           
+            FileAppend(folder + room, new string[] { JsonConvert.SerializeObject(message) });
         }
 
         public void AppendSequence(string room, ChatMessage[] messages)
         {
             List<ChatMessage> history = new List<ChatMessage>(GetHistory(room));
-
+            if (history.Count == 0)
+                return;
             int i = history.Count;
             while(i > 0)
             {
-                if(messages[0].TimeStamp == history[i].TimeStamp)
+                if(messages[0].TimeStamp == history[i-1]?.TimeStamp)
                 {
-                    i++;
-                    break;
+                    //i++;
+                    return;
                 }
                 i--;
             }
             history.RemoveRange(i, history.Count - i);
-            for(int j =0; j < messages.Length; j++)
+            for(int j =i; j < messages.Length; j++)
             {
                 history.Add(messages[j]);
             }
 
             string[] text = new string[history.Count];
-            for(int j = 0; j< text.Length; j++)
+            for(int j = 0; j< text.Length-1; j++)
             {
-                text[j] = JsonConvert.SerializeObject(messages[j]);
+                    text[j] = JsonConvert.SerializeObject(messages[j]);
             }
-
             FileAppend(folder + room, text);
         }
         private void FileAppend(string room, string[] text)
