@@ -71,7 +71,7 @@ namespace MultiRoomChatClient
                     string message = messageQue.First.Value;
 
                     sw.WriteLine(message);
-                    sw?.Flush();
+                    sw.Flush();
 
                     messageQue.RemoveFirst();
                 }
@@ -115,10 +115,12 @@ namespace MultiRoomChatClient
 
         public static void Disconnect()
         {
-            while(messageQue.First != null)
+        /*    while(messageQue.First != null)
             {
-
-            }
+                ReadStream();
+                WriteStream();
+                Thread.Sleep(20);
+            }*/
             processThread?.Abort();
             if (stream != null)
             {

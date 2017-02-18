@@ -48,7 +48,7 @@ namespace MultiRoomChatClient
                     lb.DataSource = room.Messages;
                     int visibleItems = lb.ClientSize.Height / lb.ItemHeight;
                     lb.TopIndex = Math.Max(lb.Items.Count - visibleItems + 1, 0);
-                    
+                   // lb.SelectionMode = Selection. MultiExtended;
                     //tp.Text += room.Name1;
                 }));
             };

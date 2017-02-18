@@ -30,6 +30,8 @@ namespace MultiRoomChatClient
             ResponseHandler.Unbanned += () => Invoke(new Action(unBan));
             ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
             ResponseHandler.roomError += (x) => Invoke(new Action<string>(OnRoomError), x);
+          
+            //btn_createRoom.Focus +=()=>Invoke*
         }
 
         public void HandleMessage(ChatMessage msg)
@@ -60,9 +62,6 @@ namespace MultiRoomChatClient
 
         private void btn_send_Click(object sender, EventArgs e)
         {
-            
-     
-          //  Nodes.Cast<TreeNode>().ToArray()
             if (tabbedMessageList1.getCountRoom() == 0)
             {
                 MessageBox.Show("Enter room");
@@ -145,7 +144,7 @@ namespace MultiRoomChatClient
                 tabbedMessageList1.AddRoom(tag as RoomObjExt);
                 
             }
-            else if ((tag is string) && tag.ToString() != Client.Username.ToString()) //&& btn_send.Enabled==true)
+            else if ((tag is string) && tag.ToString() != Client.Username.ToString()) 
             {
                 PrivateMessageForm PmForm = new PrivateMessageForm(tag as string, this);
                 PMForms.AddLast(PmForm);
@@ -159,13 +158,16 @@ namespace MultiRoomChatClient
 
         private void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
         {
-            tabbedMessageList1.CloseAllRooms();
-            
-            Manager.RoomDataUpdated  -= () => Invoke(new Action(onRoomDataUpdated));
+            RequestManager.Logout(Client.Username.ToString());
+            // tabbedMessageList1.CloseAllRooms();
+            Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
+            ResponseHandler.privateMessageReceived -= (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
+            ResponseHandler.roomError -= (x) => Invoke(new Action<string>(OnRoomError), x);
             ResponseHandler.Banned   -= () => Invoke(new Action(Ban));
             ResponseHandler.Unbanned -= () => Invoke(new Action(unBan));
-            RequestManager.Logout();
-            Client.Disconnect();
+         
+       
+          //  Client.Disconnect();
         }
 
         private void tree_Room_Click(object sender, EventArgs e)
@@ -186,14 +188,12 @@ namespace MultiRoomChatClient
 
         private void tb_newRoom_Enter(object sender, EventArgs e)
         {
-         
-          // btn_createRoom.SelectNextControl(null,false,false,false,false);
+       
         }
 
         private void tb_newRoom_Click(object sender, EventArgs e)
         {
-           // btn_createRoom.Select();
-            //tb_newRoom.Select();
+          
         }
 
         private void tb_newRoom_KeyPress(object sender, KeyPressEventArgs e)

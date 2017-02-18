@@ -74,31 +74,29 @@ namespace ChatServer
 
         public void SendMessage(string message)
         {
-            if(Stream == null)
+            if (Stream == null)
             {
                 return;
             }
-            try
-            {
-                StreamWriter sw = new StreamWriter(Stream);
-                sw.WriteLine(message + '\n');
-                sw?.Flush();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+           
+            StreamWriter sw = new StreamWriter(Stream);
+
+            sw.WriteLine(message + '\n');
+            sw?.Flush();
+
+            //    Console.WriteLine(e.Message);
+           
             Console.WriteLine(this.Username + ": " + message);
         }
 
         public void Close()
         {
             Manager.UserDisconnect(Username);
-            WorkerThread?.Abort();
-            if (Stream != null)
+            //WorkerThread?.Abort();
+           /* if (Stream != null)
                 Stream.Close();
             if (Client != null)
-                Client.Close();
+                Client.Close();*/
         }
     }
 }
