@@ -26,7 +26,7 @@ namespace MultiRoomChatClient
 
         public static void StartClient()
         {
-            Client.Start("127.0.0.1", 8888);
+            Client.Start("93-127-118-24.static.vega-ua.net", 8080);
         }
       
         static void Start(string host, int port)

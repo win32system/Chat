@@ -13,20 +13,22 @@ namespace ChatServer
         static Thread listenThread; // потока для прослушивания
         static void Main(string[] args)
        {
-            try
+            while (true)
             {
-                server = new ServerObject();
-                ///////RoomManager.Host = new RoomObject("Host");
-                ///////RoomManager.BindEvents();
-                listenThread = new Thread(new ThreadStart(server.Listen));
-                listenThread.Start(); //старт потока
+                try
+                {
+                    server = new ServerObject();
+                    ///////RoomManager.Host = new RoomObject("Host");
+                    ///////RoomManager.BindEvents();
+                    listenThread = new Thread(new ThreadStart(server.Listen));
+                    listenThread.Start(); //старт потока
+                }
+                catch (Exception ex)
+                {
+                    server.Disconnect();
+                    Console.WriteLine(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                server.Disconnect();
-                Console.WriteLine(ex.Message);
-            }
-            Console.ReadLine();
         }
     }
 }
