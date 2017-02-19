@@ -99,7 +99,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "SuperDuperChat";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SuperDuperChat_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SuperDuperChat_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
