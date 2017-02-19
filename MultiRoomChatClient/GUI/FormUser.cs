@@ -117,6 +117,7 @@ namespace MultiRoomChatClient
                 Manager.CreateRoom(newRoom);
             }
             tb_newRoom.Clear();
+            tb_message.Focus();
         }
 
         public void Ban()
@@ -191,6 +192,16 @@ namespace MultiRoomChatClient
                 e.Handled = true;
                 return;
             }
+        }
+
+        private void tb_newRoom_Entered(object sender, EventArgs e)
+        {
+            this.AcceptButton = btn_createRoom;
+        }
+
+        private void tb_message_Entered(object sender, EventArgs e)
+        {
+            this.AcceptButton = btn_send;
         }
     }
 }

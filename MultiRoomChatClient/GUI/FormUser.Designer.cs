@@ -63,11 +63,13 @@
             // 
             resources.ApplyResources(this.tb_message, "tb_message");
             this.tb_message.Name = "tb_message";
+            this.tb_message.Enter += new System.EventHandler(this.tb_message_Entered);
             // 
             // tb_newRoom
             // 
             resources.ApplyResources(this.tb_newRoom, "tb_newRoom");
             this.tb_newRoom.Name = "tb_newRoom";
+            this.tb_newRoom.Enter += new System.EventHandler(this.tb_newRoom_Entered);
             this.tb_newRoom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_newRoom_KeyPress);
             // 
             // btn_closeRoom
