@@ -13,7 +13,8 @@ namespace MultiRoomChatClient
     public partial class TabbedMessageList : UserControl
     {
         public delegate void  roomname(string name);
-        public static event roomname roomName;
+        public event roomname roomName;
+        private TabPage selectedTab { get; set; }
         public TabbedMessageList()
         {
             InitializeComponent();
@@ -46,7 +47,19 @@ namespace MultiRoomChatClient
             lb.Dock = DockStyle.Fill;
             lb.HorizontalScrollbar = true;
             lb.DataSource = room.Messages;
-            //lb.SelectionMode = SelectionMode.MultiSimple;
+
+           
+            tabControl1.SelectedTab = tp;
+            tp.Controls.Add(lb);
+
+            (selectedTab?.Tag as RoomObjExt)?.SetBg();
+            room.Bind();
+            room.SetActive();
+            this.tabControl1.TabPages.Add(tp);
+            selectedTab = tp;
+            tp.Select();
+
+
             room.MessageReceived += (x) => {
                 /////kostyl
                 lb.Invoke(new Action(() => {
@@ -55,20 +68,23 @@ namespace MultiRoomChatClient
                     int visibleItems = lb.ClientSize.Height / lb.ItemHeight;
                     lb.TopIndex = Math.Max(lb.Items.Count - visibleItems + 1, 0);
 
-                    //lb.SelectionMode = Selection. MultiExtended;
-                  //  tp.Text += room.Name1;
                 }));
             };
             room.NotificationUpdated += (x) =>
             {
-                tp.Text = x > 0 ? room.Name : room.Name + " (" + x + ")";
+                if(!(tp.Tag as RoomObjExt).active)
+                {
+                    if(x > 0)
+                    {
+                        string label = room.Name + "(" + x + ")";
+                        tp.Invoke(new Action(() => tp.Text = label));
+                    }
+                }
+                else
+                {
+                    tp.Invoke(new Action(() => tp.Text = room.Name));
+                }
             };
-            tabControl1.SelectedTab = tp;
-            tp.Controls.Add(lb);
-         
-            room.Bind();
-            room.SetActive();
-            this.tabControl1.TabPages.Add(tp);
         }
 
         public void CloseRoom()
@@ -99,9 +115,11 @@ namespace MultiRoomChatClient
             current.SendMessage(msg);
         }
 
-        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-            
+            (selectedTab?.Tag as RoomObjExt)?.SetBg();
+            selectedTab = tabControl1.SelectedTab;
+            (tabControl1.SelectedTab?.Tag as RoomObjExt)?.SetActive();
         }
     }
 }

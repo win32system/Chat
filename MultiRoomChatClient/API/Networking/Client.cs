@@ -102,7 +102,7 @@ namespace MultiRoomChatClient
 
                     Thread.Sleep(20);
                 }
-                catch
+                catch(Exception e)
                 {
                     
                    // Disconnect();

@@ -53,29 +53,8 @@ namespace MultiRoomChatClient
             }
             Messages.Add(msg);
             Client.RoomHistory.AppendMessage(Name, msg);
-
-            //if ( active)
-           // {    
+ 
             MessageReceived?.Invoke(msg);
-
-            //TabbedMessageList.roomName += (x) =>
-            //{
-            //    if (x != room)
-            //    {
-            //        Notifications++;
-            //        NotificationUpdated?.Invoke(Notifications);
-            //    }
-            //};
-
-            
-              //  
-            
-            //}
-            //else
-            //{
-            //     Notifications++;
-            //     NotificationUpdated?.Invoke(Notifications);
-            // }
         }
 
         public void SetActive()
@@ -89,6 +68,8 @@ namespace MultiRoomChatClient
             RequestManager.SetActiveRoom(Name, args);
             active = true;
             Notifications = 0;
+            NotificationUpdated?.Invoke(Notifications);
+            MessageReceived -= (x) => AddNotification();
         }
 
         public void Bind()
@@ -114,20 +95,25 @@ namespace MultiRoomChatClient
             OnMessageReceived(room, msg);
         }
 
-        //public void Suspend()
-        //{
-        //    active = false;
-        //}
-
         public void OnDataReceived(ChatMessage[] msg)
         {
             Messages.AddRange(msg);
             Client.RoomHistory.AppendSequence(Name, msg);
         }
 
-        public RoomObjExt(string Name): base(Name){}
+        internal void SetBg()
+        {
+            active = false;
+            MessageReceived += (x) => AddNotification();
+        }
 
-      //  public RoomObjExt() : base(){}
+        internal void AddNotification()
+        {
+            Notifications++;
+            NotificationUpdated?.Invoke(Notifications);
+        }
+
+        public RoomObjExt(string Name): base(Name){}
 
         public List<ChatMessage> Messages = new List<ChatMessage>();
 

@@ -31,7 +31,6 @@ namespace MultiRoomChatClient
             ResponseHandler.privateMessageReceived += (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
             ResponseHandler.roomError += (x) => Invoke(new Action<string>(OnRoomError), x);
             
-            //btn_createRoom.Focus +=()=>Invoke*
         }
 
         public void HandleMessage(ChatMessage msg)
@@ -192,16 +191,6 @@ namespace MultiRoomChatClient
                 e.Handled = true;
                 return;
             }
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
