@@ -156,20 +156,6 @@ namespace MultiRoomChatClient
             tabbedMessageList1.CloseRoom();
         }
 
-        private void SuperDuperChat_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            RequestManager.Logout(Client.Username.ToString());
-            // tabbedMessageList1.CloseAllRooms();
-            Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
-            ResponseHandler.privateMessageReceived -= (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
-            ResponseHandler.roomError -= (x) => Invoke(new Action<string>(OnRoomError), x);
-            ResponseHandler.Banned   -= () => Invoke(new Action(Ban));
-            ResponseHandler.Unbanned -= () => Invoke(new Action(unBan));
-         
-       
-          //  Client.Disconnect();
-        }
-
         private void tree_Room_Click(object sender, EventArgs e)
         {
             if (tree_Room.SelectedNode == null)
@@ -202,6 +188,20 @@ namespace MultiRoomChatClient
         private void tb_message_Entered(object sender, EventArgs e)
         {
             this.AcceptButton = btn_send;
+        }
+
+        private void SuperDuperChat_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RequestManager.Logout(Client.Username.ToString());
+            tabbedMessageList1.CloseAllRooms();
+
+            Manager.RoomDataUpdated -= () => Invoke(new Action(onRoomDataUpdated));
+            ResponseHandler.privateMessageReceived -= (x) => Invoke(new Action<ChatMessage>(HandleMessage), x);
+            ResponseHandler.roomError -= (x) => Invoke(new Action<string>(OnRoomError), x);
+            ResponseHandler.Banned -= () => Invoke(new Action(Ban));
+            ResponseHandler.Unbanned -= () => Invoke(new Action(unBan));
+
+            Client.Disconnect();
         }
     }
 }

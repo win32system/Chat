@@ -69,7 +69,7 @@ namespace MultiRoomChatClient
             active = true;
             Notifications = 0;
             NotificationUpdated?.Invoke(Notifications);
-            MessageReceived -= (x) => AddNotification();
+            MessageReceived -= AddNotification;
         }
 
         public void Bind()
@@ -104,10 +104,10 @@ namespace MultiRoomChatClient
         internal void SetBg()
         {
             active = false;
-            MessageReceived += (x) => AddNotification();
+            MessageReceived += AddNotification;
         }
 
-        internal void AddNotification()
+        internal void AddNotification(ChatMessage s)
         {
             Notifications++;
             NotificationUpdated?.Invoke(Notifications);

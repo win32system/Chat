@@ -95,7 +95,6 @@
             this.label1.Size = new System.Drawing.Size(112, 25);
             this.label1.TabIndex = 4;
             this.label1.Text = "Password:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // LoginForm
             // 

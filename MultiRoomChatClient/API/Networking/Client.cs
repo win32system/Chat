@@ -17,7 +17,7 @@ namespace MultiRoomChatClient
         static TcpClient client;
         static NetworkStream stream;
         static LinkedList<string> messageQue = new LinkedList<string>();
-        static Thread processThread;
+        static bool working;
         public static HistoryDataprovider RoomHistory = new HistoryDataprovider("Msg");
         public static HistoryDataprovider PrivateHistory = new HistoryDataprovider("Private");
 
@@ -28,7 +28,7 @@ namespace MultiRoomChatClient
         {
             Client.Start("127.0.0.1", 8080);
         }
-      
+
         static void Start(string host, int port)
         {
             if (client == null || stream == null)
@@ -39,14 +39,12 @@ namespace MultiRoomChatClient
             {
                 return;
             }
-          
-                client.Connect(host, port);
-                stream = client.GetStream();
-                processThread = new Thread(new ThreadStart(Process));
 
-                processThread.Start();
-           
-         
+            client.Connect(host, port);
+            stream = client.GetStream();
+            Thread processThread = new Thread(new ThreadStart(Process));
+            working = true;
+            processThread.Start();
 
             // Console.WriteLine(ex.Message);
 
@@ -92,38 +90,38 @@ namespace MultiRoomChatClient
         
         static void Process()
         {
-            while (true)
+            while (working)
             {
                 try
                 {
-                ReadStream();
-                    
+                    ReadStream();
+
                     WriteStream();
 
                     Thread.Sleep(20);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    
-                   // Disconnect();
-                //    Console.WriteLine("Подключение прервано!"); //соединение было прервано
-                //    Console.ReadLine();
-                //    Disconnect();
+
+                    // Disconnect();
+                    //    Console.WriteLine("Подключение прервано!"); //соединение было прервано
+                    //    Console.ReadLine();
+                    //    Disconnect();
                 }
             }
         }
 
         public static void Disconnect()
         {
-        /*    while(messageQue.First != null)
-            {
-                ReadStream();
-                WriteStream();
-                Thread.Sleep(20);
-            }*/
-            processThread?.Abort();
+            
             if (stream != null)
             {
+                while (messageQue.First != null)
+                {
+                     WriteStream();
+                     Thread.Sleep(20);
+                }
+                working = false;
                 stream.Close();//отключение потока
                 stream = null;
             }

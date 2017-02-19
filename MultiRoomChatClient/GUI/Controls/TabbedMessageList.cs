@@ -47,12 +47,11 @@ namespace MultiRoomChatClient
             lb.Dock = DockStyle.Fill;
             lb.HorizontalScrollbar = true;
             lb.DataSource = room.Messages;
-
            
             tabControl1.SelectedTab = tp;
             tp.Controls.Add(lb);
 
-            (selectedTab?.Tag as RoomObjExt)?.SetBg();
+            //(selectedTab?.Tag as RoomObjExt)?.SetBg();
             room.Bind();
             room.SetActive();
             this.tabControl1.TabPages.Add(tp);
@@ -102,6 +101,7 @@ namespace MultiRoomChatClient
         {
             while(tabControl1.TabPages.Count > 0)
             {
+                tabControl1.SelectedIndex = 0;
                 CloseRoom();
             }
         }
